@@ -1,7 +1,10 @@
 import { Hash } from "node:crypto";
 import { StatusCode } from "../enums/status-codes";
 import { responseModel } from "../models/responseModel";
-import { getPublicRiddleRepo } from "../repositories/riddle-repositories";
+import {
+  getPublicRiddleRepo,
+  updatePassedRiddle,
+} from "../repositories/riddle-repositories";
 import { AnswerRequest } from "../schemas/answer";
 import generateHash from "../utils/hashAnswers";
 
@@ -24,10 +27,12 @@ export default async function sendAnswerService(
       statusCode: StatusCode.OK,
       body: "Wrong Answer! Try Again",
     };
-  } else {
-    return {
-      statusCode: StatusCode.OK,
-      body: "You have passed!",
-    };
   }
+
+  await updatePassedRiddle(id, { hasPassed: true });
+
+  return {
+    statusCode: StatusCode.OK,
+    body: "You have passed!",
+  };
 }

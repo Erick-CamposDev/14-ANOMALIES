@@ -16,11 +16,43 @@ export async function getAll(): Promise<Riddle[]> {
 
 export const getPublicRiddleRepo = async (id: string) => {
   const riddles = getAll();
+
   const foundRiddle = (await riddles).find(
     (riddle: Riddle) => Number(id) === riddle.id,
   );
 
   if (!foundRiddle) return false;
 
+  return foundRiddle;
+};
+
+export const getPreviousRiddle = async (id: string) => {
+  const riddles = getAll();
+
+  const foundRiddle = (await riddles).find(
+    (riddle: Riddle) => Number(id) - 1 === riddle.id,
+  );
+
+  if (!foundRiddle) return false;
+
+  return foundRiddle;
+};
+
+export const updatePassedRiddle = async (
+  id: string,
+  hasPassed: { hasPassed: true },
+) => {
+  const riddles = await getAll();
+  const foundRiddle = riddles.find(
+    (riddle: Riddle) => Number(id) === riddle.id,
+  );
+
+  if (!foundRiddle) return null;
+
+  Object.assign(foundRiddle, hasPassed);
+
+  const fileContent: RiddleFile = { riddleData: riddles };
+  (await fs.promises.writeFile(PATH_FILE, JSON.stringify(fileContent, null, 2)),
+    "utf-8");
   return foundRiddle;
 };

@@ -6,7 +6,8 @@
       "riddleType": "text",
       "riddleHint": "Talvez as morsas podem ter noção de criptografia.",
       "riddleContent": "-.. . --.. . -- -... .-. --- / -.. . / ..--- ----- ..--- .....",
-      "riddleAnswer": "4049f66c165fb8055b027fb5fe5346135e41f391edd56d02ab46a5e5ef03d20a"
+      "riddleAnswer": "4049f66c165fb8055b027fb5fe5346135e41f391edd56d02ab46a5e5ef03d20a",
+      "hasPassed": true
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "riddleType": "text",
       "riddleHint": "Bacon é uma ótima proteína.",
       "riddleContent": "AAAAB AAAAA BAABB / ABBAA AAAAA / ABABB ABBAB ABBAA BAABA AAAAA ABBAA AABBB AAAAA",
-      "riddleAnswer": "0e65517c770eb68f076c15085f0e4818ae5ccf9e8f4ce91f5adf22927fbfb435"
+      "riddleAnswer": "0e65517c770eb68f076c15085f0e4818ae5ccf9e8f4ce91f5adf22927fbfb435",
+      "hasPassed": false
     },
     {
       "id": 3,
@@ -23,7 +25,8 @@
       "riddleHint": "Que tal consultar o italiano e o alfabeto?",
       "riddleContent": "Czttlahoc qt Idvq",
       "riddleSubcontent": "3 15 14 6 21 19 1 15",
-      "riddleAnswer": "96e4c705d3bba8794c6a766cdcbc5b0c992862c2f55dc56032c680edb10f7a42"
+      "riddleAnswer": "96e4c705d3bba8794c6a766cdcbc5b0c992862c2f55dc56032c680edb10f7a42",
+      "hasPassed": false
     },
     {
       "id": 4,
@@ -31,7 +34,8 @@
       "riddleType": "image",
       "riddleHint": "Por debaixo dos panos os celulares possuem dificuldades de acessar",
       "riddleContent": "Placeholder",
-      "riddleAnswer": "3609439dac298015ff58f91766fc1329a48bf018c488922a46ba7394ab23847d"
+      "riddleAnswer": "3609439dac298015ff58f91766fc1329a48bf018c488922a46ba7394ab23847d",
+      "hasPassed": false
     },
     {
       "id": 5,
@@ -39,7 +43,8 @@
       "riddleType": "audio",
       "riddleHint": "Use Referências Lógicas",
       "riddleContent": "Placeholder",
-      "riddleAnswer": "96e35ad52b0c820357f3b7410265ae59216291b39a30861eec9ad742bc293114"
+      "riddleAnswer": "96e35ad52b0c820357f3b7410265ae59216291b39a30861eec9ad742bc293114",
+      "hasPassed": false
     },
     {
       "id": 6,
@@ -47,7 +52,8 @@
       "riddleType": "image",
       "riddleHint": "As sílabas são confiáveis",
       "riddleContent": "Placeholder",
-      "riddleAnswer": "ea17f00dab54d3a275320cca613a66aae7e7dccc035dd289344b5eec759b4027"
+      "riddleAnswer": "ea17f00dab54d3a275320cca613a66aae7e7dccc035dd289344b5eec759b4027",
+      "hasPassed": false
     },
     {
       "id": 7,
@@ -55,7 +61,8 @@
       "riddleType": "video",
       "riddleHint": "A atenção é essencial",
       "riddleContent": "Placeholder",
-      "riddleAnswer": "399312783aa5f499ead40d6b4b2c132852fcacef9b3822b1eee993eade8f01df"
+      "riddleAnswer": "399312783aa5f499ead40d6b4b2c132852fcacef9b3822b1eee993eade8f01df",
+      "hasPassed": false
     },
     {
       "id": 8,
@@ -63,7 +70,8 @@
       "riddleType": "image",
       "riddleHint": "Pense DENTRO da caixa, o Autor está a sua espera.",
       "riddleContent": "Placeholder",
-      "riddleAnswer": "8f8ddf6f392fb8196e0c797fa215828dd1bdd25063ddb430efce4f0e133b81c9"
+      "riddleAnswer": "8f8ddf6f392fb8196e0c797fa215828dd1bdd25063ddb430efce4f0e133b81c9",
+      "hasPassed": false
     },
     {
       "id": 9,
@@ -71,7 +79,8 @@
       "riddleType": "audio",
       "riddleHint": "É como ver um desenho pelos ouvidos.",
       "riddleContent": "Placeholder",
-      "riddleAnswer": "7667ca21ec7cc0ca7213861836ff487c3f806e892fc22cbddfd2a617a079da16"
+      "riddleAnswer": "7667ca21ec7cc0ca7213861836ff487c3f806e892fc22cbddfd2a617a079da16",
+      "hasPassed": false
     },
     {
       "id": 10,
@@ -79,7 +88,8 @@
       "riddleType": "text",
       "riddleHint": "Os cantos foram ofuscados",
       "riddleContent": "Placeholder",
-      "riddleAnswer": "98e1ce9d6d05b2698069aa9c3519b3e2dc4c1c1d67e2f83b6c9acdbba3bbacd3"
+      "riddleAnswer": "98e1ce9d6d05b2698069aa9c3519b3e2dc4c1c1d67e2f83b6c9acdbba3bbacd3",
+      "hasPassed": false
     },
     {
       "id": 11,
@@ -87,7 +97,8 @@
       "riddleType": "image",
       "riddleHint": "Não se engane, isso é muito mais dificil do que parece",
       "riddleContent": "Placeholder",
-      "riddleAnswer": "12a3dde110e765cc712b33615bdd0720857e20fa009e31d1c1a0f08be4930c4c"
+      "riddleAnswer": "12a3dde110e765cc712b33615bdd0720857e20fa009e31d1c1a0f08be4930c4c",
+      "hasPassed": false
     },
     {
       "id": 12,
@@ -95,7 +106,8 @@
       "riddleType": "video",
       "riddleHint": "Cuidado com as piscadas!",
       "riddleContent": "placeholder",
-      "riddleAnswer": "5f8556018592caa5f0516238ad04df42ae730d9fadf7195fbf0688240a09f5d4"
+      "riddleAnswer": "5f8556018592caa5f0516238ad04df42ae730d9fadf7195fbf0688240a09f5d4",
+      "hasPassed": false
     },
     {
       "id": 13,
@@ -103,7 +115,8 @@
       "riddleType": "text",
       "riddleHint": "São separados mas se unem no final, não se esqueça do meu número favorito! 👁‍🗨",
       "riddleContent": "placeholder",
-      "riddleAnswer": "a3b66924a77dab48f48ea9b1ea70295b4f01fdf7b7585b20d340db1710830563"
+      "riddleAnswer": "a3b66924a77dab48f48ea9b1ea70295b4f01fdf7b7585b20d340db1710830563",
+      "hasPassed": false
     },
     {
       "id": 14,
@@ -111,7 +124,8 @@
       "riddleType": "audio",
       "riddleHint": "Cada resposta abre apenas uma nova porta. Continue transformando o que encontrar até que tudo finalmente faça sentido.",
       "riddleContent": "placeholder",
-      "riddleAnswer": "c072d39099279e741c78be1fe1c68444fb0fef48ea6b985a411d9170d4aad29a"
+      "riddleAnswer": "c072d39099279e741c78be1fe1c68444fb0fef48ea6b985a411d9170d4aad29a",
+      "hasPassed": false
     }
   ]
 }
