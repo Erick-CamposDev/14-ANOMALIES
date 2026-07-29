@@ -12,14 +12,14 @@ export default async function getRiddleRewardService(): Promise<
 > {
   const riddles = await getAllRiddles();
 
-  riddles.forEach((riddle: Riddle) => {
-    if (!riddle.hasPassed) {
-      return {
-        statusCode: StatusCode.FORBIDDEN,
-        body: "I'm watching you trying to get the reward more soon, this isn't ALLOWED. I will keep an eye on you.",
-      };
-    }
-  });
+  const isNotCompleted = riddles.some((riddle: Riddle) => !riddle.hasPassed);
+
+  if (isNotCompleted) {
+    return {
+      statusCode: StatusCode.FORBIDDEN,
+      body: "I see you're trying to get your reward more sooner... DON'T. I'll keep my eye on you",
+    };
+  }
 
   const reward = await getRewardURL();
 
