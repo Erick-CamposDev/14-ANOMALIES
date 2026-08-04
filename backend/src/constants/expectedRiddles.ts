@@ -1,0 +1,17 @@
+export const expectedRiddles = [
+  "anomaly-0",
+  "anomaly-1",
+  "anomaly-2",
+  "anomaly-3",
+  "anomaly-4",
+  "anomaly-5",
+  "anomaly-6",
+  "anomaly-7",
+  "anomaly-8",
+  "anomaly-9",
+  "anomaly-10",
+  "anomaly-11",
+  "anomaly-12",
+  "anomaly-13",
+  "anomaly-14",
+] as const;
