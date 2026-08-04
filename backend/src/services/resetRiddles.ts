@@ -1,6 +1,6 @@
 import { expectedRiddles } from "../constants/expectedRiddles";
 import { StatusCode } from "../enums/status-codes";
-import { responseModel } from "../models/responseModel";
+import { CommonMessage, responseModel } from "../models/responseModel";
 import {
   getPlayerProgressRepo,
   resetProgressRepo,
@@ -10,7 +10,7 @@ import { receiveNotFoundResponse } from "../utils/receiveNotFoundResponse";
 
 export default async function resetProgressService(
   playerId: string,
-): Promise<responseModel<string>> {
+): Promise<responseModel<CommonMessage>> {
   const foundPlayer = await getPlayerProgressRepo(playerId);
 
   if (!foundPlayer) return receiveNotFoundResponse("player");
@@ -22,7 +22,7 @@ export default async function resetProgressService(
   if (!isCompleted) {
     return {
       statusCode: StatusCode.NO_CONTENT,
-      body: "",
+      body: { message: "" },
     };
   }
 
@@ -30,6 +30,6 @@ export default async function resetProgressService(
 
   return {
     statusCode: StatusCode.OK,
-    body: "The progress was reseted successfully!",
+    body: { message: "The progress was reseted successfully!" },
   };
 }

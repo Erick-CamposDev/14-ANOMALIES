@@ -1,5 +1,5 @@
 import { StatusCode } from "../enums/status-codes";
-import { responseModel } from "../models/responseModel";
+import { CommonMessage, responseModel } from "../models/responseModel";
 import {
   getPlayerProgressRepo,
   updatePlayerProgressRepo,
@@ -13,7 +13,7 @@ export default async function sendAnswerService(
   id: string,
   playerId: string,
   body: AnswerRequest,
-): Promise<responseModel<string>> {
+): Promise<responseModel<CommonMessage>> {
   const hashAnswer = generateHash(body.answer);
   const currentRiddle = await getPublicRiddleRepo(id);
   const foundPlayer = await getPlayerProgressRepo(playerId);
@@ -25,7 +25,7 @@ export default async function sendAnswerService(
   if (hashAnswer !== currentRiddle.riddleAnswer) {
     return {
       statusCode: StatusCode.OK,
-      body: "Wrong Answer! Try Again",
+      body: { message: "Wrong Answer! Try Again" },
     };
   }
 
@@ -34,7 +34,9 @@ export default async function sendAnswerService(
   if (!resolvedRiddles.includes(`anomaly-${Number(id) - 1}`)) {
     return {
       statusCode: StatusCode.FORBIDDEN,
-      body: "Don't even try to answer more sooner, this isn't allowed.",
+      body: {
+        message: "Don't even try to answer more sooner, this isn't allowed.",
+      },
     };
   }
 
@@ -44,6 +46,6 @@ export default async function sendAnswerService(
 
   return {
     statusCode: StatusCode.OK,
-    body: "You have passed!",
+    body: { message: "You have passed!" },
   };
 }

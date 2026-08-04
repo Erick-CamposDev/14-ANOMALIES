@@ -1,5 +1,5 @@
 import { StatusCode } from "../enums/status-codes";
-import { responseModel } from "../models/responseModel";
+import { CommonMessage, responseModel } from "../models/responseModel";
 import { publicRiddle } from "../models/riddleModel";
 import { getPlayerProgressRepo } from "../repositories/progress-repositories";
 import { getPublicRiddleRepo } from "../repositories/riddle-repositories";
@@ -8,7 +8,7 @@ import { receiveNotFoundResponse } from "../utils/receiveNotFoundResponse";
 export default async function getPublicRiddleService(
   id: string,
   playerId: string,
-): Promise<responseModel<string | publicRiddle>> {
+): Promise<responseModel<CommonMessage | publicRiddle>> {
   const foundRiddle = await getPublicRiddleRepo(id);
   const foundPlayer = await getPlayerProgressRepo(playerId);
 
@@ -23,7 +23,10 @@ export default async function getPublicRiddleService(
   ) {
     return {
       statusCode: StatusCode.FORBIDDEN,
-      body: "You're not allowed to get the access for the future riddles, CHEATER.",
+      body: {
+        message:
+          "You're not allowed to get the access for the future riddles, CHEATER.",
+      },
     };
   }
 
