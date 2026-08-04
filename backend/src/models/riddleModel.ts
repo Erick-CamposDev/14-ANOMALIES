@@ -6,7 +6,6 @@ export interface RiddleModel {
   riddleType: riddleContent;
   riddleHint: string;
   riddleAnswer: string;
-  hasPassed: boolean;
 }
 
 export interface TextRiddle extends RiddleModel {
