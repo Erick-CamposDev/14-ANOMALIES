@@ -1,20 +1,24 @@
+import { expectedRiddles } from "../constants/expectedRiddles";
 import { StatusCode } from "../enums/status-codes";
 import { responseModel } from "../models/responseModel";
 import { RewardPageModel } from "../models/rewardPageModel";
-import { Riddle } from "../models/riddleModel";
-import {
-  getAllRiddles,
-  getRewardURL,
-} from "../repositories/riddle-repositories";
+import { getPlayerProgressRepo } from "../repositories/progress-repositories";
+import { getRewardURL } from "../repositories/riddle-repositories";
+import { compareProgress } from "../utils/compareProgress";
+import { receiveNotFoundResponse } from "../utils/receiveNotFoundResponse";
 
-export default async function getRiddleRewardService(): Promise<
-  responseModel<string | RewardPageModel>
-> {
-  const riddles = await getAllRiddles();
+export default async function getRiddleRewardService(
+  playerId: string,
+): Promise<responseModel<string | RewardPageModel>> {
+  const foundPlayer = await getPlayerProgressRepo(playerId);
 
-  const isNotCompleted = riddles.some((riddle: Riddle) => !riddle.hasPassed);
+  if (!foundPlayer) return receiveNotFoundResponse("player");
 
-  if (isNotCompleted) {
+  const resolvedRiddles = foundPlayer.progress.resolvedRiddles;
+
+  const isCompleted = await compareProgress(resolvedRiddles, expectedRiddles);
+
+  if (!isCompleted) {
     return {
       statusCode: StatusCode.FORBIDDEN,
       body: "I see you're trying to get your reward more sooner... DON'T. I'll keep my eye on you",
@@ -23,12 +27,7 @@ export default async function getRiddleRewardService(): Promise<
 
   const reward = await getRewardURL();
 
-  if (!reward) {
-    return {
-      statusCode: StatusCode.NOT_FOUND,
-      body: "The reward was not found!",
-    };
-  }
+  if (!reward) await receiveNotFoundResponse("reward");
 
   return {
     statusCode: StatusCode.OK,

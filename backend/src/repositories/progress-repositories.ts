@@ -21,7 +21,7 @@ export const createProgress = async (id: string, createdAt: string) => {
     progress: {
       createdAt: createdAt,
       updatedAt: null,
-      resolvedRiddles: [],
+      resolvedRiddles: ["anomaly-0"],
     },
   };
 
@@ -37,12 +37,60 @@ export const createProgress = async (id: string, createdAt: string) => {
 };
 
 export const getPlayerProgressRepo = async (id: string) => {
-  const progress = await getAllProgress();
-  const foundPlayer = progress.find((p: BaseProgress) => id === p.playerId);
+  const progresses = await getAllProgress();
+  const foundPlayer = progresses.find((p: BaseProgress) => id === p.playerId);
 
   if (!foundPlayer) {
     return false;
   }
 
   return foundPlayer;
+};
+
+export const updatePlayerProgressRepo = async (
+  id: string,
+  updatedAt: string,
+  passedRiddle?: string,
+) => {
+  const progresses = await getAllProgress();
+  const foundPlayer = progresses.find((p: BaseProgress) => id === p.playerId);
+
+  if (!foundPlayer) return false;
+
+  if (passedRiddle) {
+    const playerProgress = foundPlayer.progress.resolvedRiddles;
+    playerProgress.push(passedRiddle);
+  }
+
+  foundPlayer.progress.updatedAt = updatedAt;
+
+  const fileContent: ProgressData = { playersProgress: progresses };
+
+  await fs.promises.writeFile(
+    PROGRESS_PATH,
+    JSON.stringify(fileContent, null, 2),
+    "utf-8",
+  );
+
+  return true;
+};
+
+export const resetProgressRepo = async (playerId: string) => {
+  const progresses = await getAllProgress();
+
+  const foundPlayer = progresses.find(
+    (p: BaseProgress) => playerId === p.playerId,
+  );
+
+  if (!foundPlayer) return false;
+
+  foundPlayer.progress.resolvedRiddles = [];
+
+  const fileContent: ProgressData = { playersProgress: progresses };
+
+  await fs.promises.writeFile(
+    PROGRESS_PATH,
+    JSON.stringify(fileContent, null, 2),
+    "utf-8",
+  );
 };

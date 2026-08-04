@@ -7,27 +7,24 @@ import resetRiddlesService from "../services/resetRiddles";
 
 export async function getPublicRiddle(req: Request, res: Response) {
   const id = String(req.params.id);
-  const data = await getPublicRiddleService(id);
+  const playerId = String(req.params.playerId);
+  const data = await getPublicRiddleService(id, playerId);
 
   res.status(data.statusCode).json(data.body);
 }
 
 export async function sendAnswer(req: Request, res: Response) {
   const id = String(req.params.id);
+  const playerId = String(req.params.playerId);
   const body: AnswerRequest = req.body;
-  const data = await sendAnswerService(id, body);
+  const data = await sendAnswerService(id, playerId, body);
 
   res.status(data.statusCode).json(data.body);
 }
 
 export async function getRiddleReward(req: Request, res: Response) {
-  const data = await getRiddleRewardService();
-
-  res.status(data.statusCode).json(data.body);
-}
-
-export async function resetRiddles(req: Request, res: Response) {
-  const data = await resetRiddlesService();
+  const playerId = String(req.params.playerId);
+  const data = await getRiddleRewardService(playerId);
 
   res.status(data.statusCode).json(data.body);
 }

@@ -1,10 +1,14 @@
 import Router from "express";
 import {
   getPlayerProgress,
+  resetProgress,
   startProgressGame,
+  updatePlayerProgress,
 } from "../controllers/progress-controllers";
 
 export const progressRoute = Router();
 
-progressRoute.post("/progress/start", startProgressGame);
+progressRoute.post("/start/", startProgressGame);
 progressRoute.get("/progress/:id", getPlayerProgress);
+progressRoute.patch("/progress/:id", updatePlayerProgress);
+progressRoute.post("/reset/:playerId", resetProgress);

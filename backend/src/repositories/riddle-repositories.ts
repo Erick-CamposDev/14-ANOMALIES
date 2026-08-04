@@ -28,53 +28,6 @@ export const getPublicRiddleRepo = async (id: string) => {
   return foundRiddle;
 };
 
-export const getPreviousRiddle = async (id: string) => {
-  const riddles = getAllRiddles();
-
-  const foundRiddle = (await riddles).find(
-    (riddle: Riddle) => Number(id) - 1 === riddle.id,
-  );
-
-  if (!foundRiddle) return false;
-
-  return foundRiddle;
-};
-
-export const updatePassedRiddle = async (
-  id: string,
-  hasPassed: { hasPassed: true },
-) => {
-  const riddles = await getAllRiddles();
-  const foundRiddle = riddles.find(
-    (riddle: Riddle) => Number(id) === riddle.id,
-  );
-
-  if (!foundRiddle) return null;
-
-  Object.assign(foundRiddle, hasPassed);
-
-  const fileContent: RiddleFile = { riddleData: riddles };
-  (await fs.promises.writeFile(PATH_FILE, JSON.stringify(fileContent, null, 2)),
-    "utf-8");
-  return foundRiddle;
-};
-
 export const getRewardURL = async (): Promise<RewardPageModel> => {
   return rewardPageInfo;
-};
-
-export const resetRiddlesRepo = async () => {
-  const riddles = await getAllRiddles();
-
-  riddles.forEach((riddle: Riddle) => {
-    riddle.hasPassed = false;
-  });
-
-  const fileContent: RiddleFile = { riddleData: riddles };
-
-  await fs.promises.writeFile(
-    PATH_FILE,
-    JSON.stringify(fileContent, null, 2),
-    "utf-8",
-  );
 };

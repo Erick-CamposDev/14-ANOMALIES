@@ -1,16 +1,23 @@
+import { expectedRiddles } from "../constants/expectedRiddles";
 import { StatusCode } from "../enums/status-codes";
 import { responseModel } from "../models/responseModel";
-import { Riddle } from "../models/riddleModel";
 import {
-  getAllRiddles,
-  resetRiddlesRepo,
-} from "../repositories/riddle-repositories";
+  getPlayerProgressRepo,
+  resetProgressRepo,
+} from "../repositories/progress-repositories";
+import { compareProgress } from "../utils/compareProgress";
+import { receiveNotFoundResponse } from "../utils/receiveNotFoundResponse";
 
-export default async function resetRiddlesService(): Promise<
-  responseModel<string>
-> {
-  const riddles = await getAllRiddles();
-  const isCompleted = riddles.some((riddle: Riddle) => riddle.hasPassed);
+export default async function resetProgressService(
+  playerId: string,
+): Promise<responseModel<string>> {
+  const foundPlayer = await getPlayerProgressRepo(playerId);
+
+  if (!foundPlayer) return receiveNotFoundResponse("player");
+
+  const resolvedRiddles = foundPlayer.progress.resolvedRiddles;
+
+  const isCompleted = compareProgress(resolvedRiddles, expectedRiddles);
 
   if (!isCompleted) {
     return {
@@ -19,10 +26,10 @@ export default async function resetRiddlesService(): Promise<
     };
   }
 
-  await resetRiddlesRepo();
+  await resetProgressRepo(playerId);
 
   return {
     statusCode: StatusCode.OK,
-    body: "The riddles were reseted successfully!",
+    body: "The progress was reseted successfully!",
   };
 }
