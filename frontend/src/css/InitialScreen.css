@@ -1,0 +1,10 @@
+.initial-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye {
+  width: 300px;
+  height: 200px;
+}
