@@ -1,3 +1,6 @@
+import { RouterProvider } from "react-router-dom";
+import { router } from "./Router";
+
 export default function App() {
-  return <h1>Hello World. THE 14 ANOMALIES AWAITS</h1>;
+  return <RouterProvider router={router} />;
 }
