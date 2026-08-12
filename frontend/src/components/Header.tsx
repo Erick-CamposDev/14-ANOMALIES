@@ -5,7 +5,7 @@ export default function Header() {
     <header>
       <img
         className="logo"
-        src="src/assets/14-Anomalies-LOGO.png"
+        src="src/assets/14-Anomalies-logo.png"
         alt="Logo oficial da 14 ANOMALIES"
       />
     </header>
