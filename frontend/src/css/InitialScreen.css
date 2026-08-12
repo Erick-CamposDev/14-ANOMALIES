@@ -2,9 +2,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  margin-bottom: 2rem;
 }
 
 .eye {
-  width: 300px;
-  height: 200px;
+  width: 400px;
+  height: 300px;
+}
+
+h1 {
+  font-family: "Cinzel";
+}
+
+.btns-container {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.25rem;
 }
