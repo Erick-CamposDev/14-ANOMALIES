@@ -1,3 +1,3 @@
 export default function Footer() {
-  return <></>;
+  return <>&copy; 2026 14 Anomalies. Todos os direitos reservados.</>;
 }
