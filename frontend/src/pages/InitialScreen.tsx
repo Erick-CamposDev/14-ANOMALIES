@@ -18,7 +18,7 @@ export default function InitialScreen() {
 
       setTimeout(() => {
         setImage((prev) => prev - 1);
-      }, 750);
+      }, 500);
     }, 5000);
 
     return () => clearInterval(interval);
