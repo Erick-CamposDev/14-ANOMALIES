@@ -1,7 +1,11 @@
 import { useEffect, useRef } from "react";
 import Typed from "typed.js";
 
-export default function useTyped(hasLoop: boolean = false, strings: string[]) {
+export default function useTyped(
+  hasLoop: boolean = false,
+  strings: string[],
+  onComplete?: () => void,
+) {
   const textRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -13,9 +17,12 @@ export default function useTyped(hasLoop: boolean = false, strings: string[]) {
       loop: hasLoop,
       showCursor: true,
       cursorChar: "|",
+      onComplete: () => {
+        onComplete?.();
+      },
     });
     return () => newTyped.destroy();
-  }, [strings, hasLoop]);
+  }, [strings, hasLoop, onComplete]);
 
   return textRef;
 }
