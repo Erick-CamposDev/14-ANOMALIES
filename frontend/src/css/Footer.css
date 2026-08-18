@@ -1,0 +1,9 @@
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Cinzel";
+  margin: 3.25rem 0 0 0;
+  font-size: 18px;
+}
