@@ -1,18 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Button from "../components/Button";
 import "../css/InitialScreen.css";
-import Typed from "typed.js";
 import Modal from "../components/Modal";
+import useTyped from "../hooks/useTyped";
+import { eyeImages, eyeMessages } from "../constants/stringsArray";
 
 export default function InitialScreen() {
-  const eyeImages = [
-    "src/assets/Anomaly-Eye.png",
-    "src/assets/Anomaly-Eye-Closed.png",
-  ];
+  const strings = useMemo(() => eyeMessages, []);
 
   const [image, setImage] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const textRef = useRef<HTMLSpanElement>(null);
+  const textRef = useTyped(true, strings);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,25 +22,6 @@ export default function InitialScreen() {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const typed = new Typed(textRef.current, {
-      strings: [
-        "Olá, desafiante",
-        "Eu sou o Olho Anômalo",
-        "Então...",
-        "Vamos começar?",
-        "Vai ser instigante.",
-      ],
-      typeSpeed: 35,
-      backSpeed: 20,
-      backDelay: 1200,
-      loop: true,
-      showCursor: true,
-      cursorChar: "|",
-    });
-    return () => typed.destroy();
   }, []);
 
   return (
