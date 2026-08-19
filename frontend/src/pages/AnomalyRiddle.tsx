@@ -1,7 +1,9 @@
+import Anomaly from "../components/Anomaly";
+
 export default function AnomalyRiddle() {
   return (
     <>
-      <h2>ANOMALY NUMBER</h2>
+      <Anomaly />
     </>
   );
 }

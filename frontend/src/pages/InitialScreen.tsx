@@ -4,6 +4,8 @@ import "../css/InitialScreen.css";
 import Modal from "../components/Modal";
 import useTyped from "../hooks/useTyped";
 import { eyeImages, eyeMessages } from "../constants/stringsArray";
+import { fetchAPI } from "../utils/fetchApi";
+import { useNavigate } from "react-router-dom";
 
 export default function InitialScreen() {
   const strings = useMemo(() => eyeMessages, []);
@@ -11,6 +13,7 @@ export default function InitialScreen() {
   const [image, setImage] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const textRef = useTyped(true, strings);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -35,7 +38,15 @@ export default function InitialScreen() {
         <span ref={textRef}></span>
       </h1>
       <div className="btns-container">
-        <Button variant="double" text="desafiar" icon="eye-fill" />
+        <Button
+          variant="double"
+          text="desafiar"
+          icon="eye-fill"
+          onClick={() => {
+            fetchAPI("14anomalies/start", "POST");
+            void navigate("/anomaly/1");
+          }}
+        />
         <Button
           variant="double"
           text="Sobre o jogo"
