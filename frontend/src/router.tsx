@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
         element: <InitialScreen />,
       },
       {
-        path: "/anomaly/",
+        path: "/anomaly/:number",
         element: <AnomalyRiddle />,
       },
       {
