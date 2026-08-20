@@ -6,12 +6,14 @@ import useTyped from "../hooks/useTyped";
 import { eyeImages, eyeMessages } from "../constants/stringsArray";
 import { fetchAPI } from "../utils/fetchApi";
 import { useNavigate } from "react-router-dom";
+import generateId from "../utils/generateId";
+import { useModal } from "../hooks/useModal";
 
 export default function InitialScreen() {
   const strings = useMemo(() => eyeMessages, []);
 
   const [image, setImage] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
+  const { modal, onOpen, onClose } = useModal();
   const textRef = useTyped(true, strings);
   const navigate = useNavigate();
 
@@ -42,21 +44,36 @@ export default function InitialScreen() {
           variant="double"
           text="desafiar"
           icon="eye-fill"
-          onClick={() => {
-            fetchAPI("14anomalies/start", "POST");
+          onClick={async () => {
+            const newId = generateId();
+
+            if (!newId) {
+              onOpen("error");
+              return;
+            }
+
+            await fetchAPI(`14anomalies/start/${newId}`, "POST");
             void navigate("/anomaly/1");
           }}
         />
+        <Modal
+          title="ERRO"
+          modalActive={modal === "error"}
+          onClose={() => onClose()}
+        >
+          <h2>O Id gerado já existe!</h2>
+          <p>Tente resetar seu progresso</p>
+        </Modal>
         <Button
           variant="double"
           text="Sobre o jogo"
           icon="book-fill"
-          onClick={() => setIsOpen(true)}
+          onClick={() => onOpen("about")}
         />
         <Modal
           title="Sobre o jogo"
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
+          modalActive={modal === "about"}
+          onClose={() => onClose()}
         >
           <h2>Olá! Dev aqui.</h2>
           <p>

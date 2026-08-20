@@ -5,19 +5,19 @@ import type { PropsWithChildren } from "react";
 
 interface ModalProps {
   title: string;
-  isOpen: boolean;
+  modalActive: boolean;
   onClose: () => void;
 }
 
 export default function Modal({
   title,
-  isOpen,
+  modalActive,
   onClose,
   children,
 }: PropsWithChildren<ModalProps>) {
   return createPortal(
-    <div className={`md-background ${isOpen ? "open" : ""}`}>
-      <div className={`modal-container ${isOpen ? "open" : ""}`}>
+    <div className={`md-background ${modalActive ? "open" : ""}`}>
+      <div className={`modal-container ${modalActive ? "open" : ""}`}>
         <div className="upper-content">
           <div className="close-btn">
             <Button variant="icon" icon="x-circle" onClick={onClose} />
