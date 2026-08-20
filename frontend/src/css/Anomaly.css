@@ -1,0 +1,41 @@
+.anomaly-container {
+  width: 55%;
+  height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  border: 4px solid #fafafa;
+  border-radius: 20px;
+  background: linear-gradient(
+    to bottom,
+    #e70303d0 0%,
+    #a80303c9 25%,
+    #720202d0 50%,
+    #3a0101d7 75%,
+    #0a0a0ad0 100%
+  );
+  backdrop-filter: blur(6px);
+}
+
+.anomaly-header {
+  width: 100%;
+  height: 15%;
+}
+
+.anomaly-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 34px;
+  font-family: "Special Elite";
+}
+
+.anomaly-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20%;
+}
