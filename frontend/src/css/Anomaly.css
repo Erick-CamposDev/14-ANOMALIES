@@ -33,9 +33,44 @@
 }
 
 .anomaly-footer {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 20%;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.hint-container {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  margin-right: 1.1rem;
+}
+
+.md-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.md-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.md-image img {
+  width: 280px;
+  height: 200px;
 }
