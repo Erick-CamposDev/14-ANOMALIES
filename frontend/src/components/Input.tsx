@@ -1,13 +1,17 @@
-export default function Input() {
+import type { InputHTMLAttributes } from "react";
+import "../css/Input.css";
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  placeholderText: string;
+}
+
+export default function Input({ placeholderText, ...rest }: InputProps) {
   return (
     <>
       <input
-        type="text"
         className="anomaly-input"
-        name="answer"
-        id="answer"
-        required
-        placeholder="Digite sua tentativa de resposta."
+        placeholder={placeholderText}
+        {...rest}
       />
     </>
   );
