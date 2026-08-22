@@ -3,7 +3,6 @@ import getPublicRiddleService from "../services/getPublicRiddle";
 import { AnswerRequest } from "../schemas/answer";
 import sendAnswerService from "../services/sendAnswer";
 import getRiddleRewardService from "../services/getRiddleReward";
-import resetRiddlesService from "../services/resetRiddles";
 
 export async function getPublicRiddle(req: Request, res: Response) {
   const id = String(req.params.id);

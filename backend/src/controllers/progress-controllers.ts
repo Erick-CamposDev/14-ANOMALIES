@@ -5,7 +5,7 @@ import updatePlayerProgressService from "../services/updatePlayerProgress";
 import resetProgressService from "../services/resetRiddles";
 
 export async function startProgressGame(req: Request, res: Response) {
-  const playerId = crypto.randomUUID();
+  const playerId = String(req.params.id);
   const createdAt = new Date().toISOString();
 
   const data = await startProgressGameService(playerId, createdAt);
