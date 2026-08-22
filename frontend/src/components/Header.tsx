@@ -7,6 +7,7 @@ export default function Header() {
 
   const home = pathname === "/";
   const riddle = pathname.startsWith("/anomaly");
+  const error = pathname.startsWith("/error");
 
   return (
     <header>
@@ -18,6 +19,7 @@ export default function Header() {
         />
       )}
       {riddle && <h1 className="anomaly-title">ANOMALIA {number}</h1>}
+      {error && <h1 className="anomaly-title">ERRO DETECTADO</h1>}
     </header>
   );
 }
