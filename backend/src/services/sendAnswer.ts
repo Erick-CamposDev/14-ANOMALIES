@@ -25,7 +25,7 @@ export default async function sendAnswerService(
   if (hashAnswer !== currentRiddle.riddleAnswer) {
     return {
       statusCode: StatusCode.OK,
-      body: { message: "Wrong Answer! Try Again" },
+      body: { message: "Wrong Answer! Try Again", type: "wrong" },
     };
   }
 
@@ -46,6 +46,6 @@ export default async function sendAnswerService(
 
   return {
     statusCode: StatusCode.OK,
-    body: { message: "You have passed!" },
+    body: { message: "You have passed!", type: "success" },
   };
 }
