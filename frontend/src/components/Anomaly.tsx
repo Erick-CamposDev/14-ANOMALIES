@@ -5,16 +5,78 @@ import Input from "./Input";
 import Modal from "./Modal";
 import { useModal } from "../hooks/useModal";
 import seriousEye from "../assets/serious-eye.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { fetchAPI } from "../utils/fetchApi";
+import { FadeLoader } from "react-spinners";
+
+export interface PublicRiddle {
+  id: number;
+  riddleText: string;
+  riddleType: "audio" | "text" | "video" | "image";
+  riddleContent: string;
+  riddleSubContent?: string;
+  riddleHint: string;
+}
 
 export default function Anomaly() {
+  const [answer, setAnswer] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
+  const [riddle, setRiddle] = useState<PublicRiddle | null>(null);
+  const [loading, setLoading] = useState(true);
   const { modal, onOpen, onClose } = useModal();
   const navigate = useNavigate();
 
-  useEffect(() => {}, []);
+  const { number: currentRiddleNumber } = useParams();
+  const playerId = localStorage.getItem("playerId");
+
+  useEffect(() => {
+    async function handleFetch() {
+      if (!playerId || !currentRiddleNumber) {
+        void navigate("/error", {
+          state: {
+            message:
+              "O jogador não foi encontado. Gere seu id para desafiar as anomalias.",
+          },
+        });
+
+        return;
+      }
+      try {
+        const data = await fetchAPI(
+          `14anomalies/anomaly/${currentRiddleNumber}/${playerId}`,
+        );
+
+        if (!data) {
+          void navigate("/error", {
+            state: {
+              message: "O enigma não foi encontrado, digite um número válido.",
+            },
+          });
+
+          return;
+        }
+
+        if ("message" in data) {
+          void navigate("/error", {
+            state: {
+              message:
+                "Você se acha espertinho não é? Saiba que já previ seus movimentos fúteis, estou de Olho em você, trapaceiro.",
+            },
+          });
+          return;
+        }
+
+        setRiddle(data?.riddleData);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    void handleFetch();
+  }, [currentRiddleNumber, playerId, navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAnswer(e.target.value);
     setIsDisabled(e.target.value.trim() === "");
   };
 
@@ -28,12 +90,15 @@ export default function Anomaly() {
         />
       </div>
       <div className="anomaly-content">
-        <p>CONTEUDO</p>
+        <FadeLoader loading={loading} width={5} height={20} color={"#fafafa"} />
+
+        <p>{riddle?.riddleContent}</p>
       </div>
       <div className="anomaly-footer">
         <div className="input-container">
           <Input
             placeholderText="Digite sua resposta."
+            value={answer}
             onChange={(e) => handleChange(e)}
           />
           <Button
@@ -58,9 +123,37 @@ export default function Anomaly() {
               <img src={seriousEye} alt="Imagem do olho anômalo sério." />
             </div>
             <div className="md-btns">
-              <Button variant="text" text="NÃO" onClick={() => onClose()} />
-              <Button variant="text" text="SIM" />
+              <Button
+                variant="text"
+                text="SIM"
+                onClick={async () => {
+                  const hasPassed = await fetchAPI(
+                    `14anomalies/anomaly/${currentRiddleNumber}/${playerId}`,
+                    "POST",
+                    {
+                      answer: answer.trim(),
+                    },
+                  );
+
+                  if (hasPassed?.riddleData.type === "wrong") {
+                    onClose();
+                    onOpen("error");
+                    return;
+                  }
+
+                  onClose();
+                  void navigate(`/anomaly/${Number(currentRiddleNumber) + 1}`);
+                }}
+              />
             </div>
+          </Modal>
+          <Modal
+            title="ERRO"
+            modalActive={modal === "error"}
+            onClose={() => onClose()}
+          >
+            <h2>Oops! Parece que sua resposta não está correta!</h2>
+            <p>Que tal tentarmos de novo?</p>
           </Modal>
         </div>
         <div className="hint-container">
@@ -75,7 +168,7 @@ export default function Anomaly() {
             onClose={() => onClose()}
           >
             <h2>Sua dica anômala é...</h2>
-            <p>CONTEÚDO</p>
+            <p>{riddle?.riddleHint}</p>
           </Modal>
         </div>
       </div>
