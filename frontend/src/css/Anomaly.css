@@ -28,6 +28,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  text-align: center;
   font-size: 34px;
   font-family: "Special Elite";
 }

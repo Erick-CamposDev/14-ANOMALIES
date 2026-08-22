@@ -1,0 +1,14 @@
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  font-family: "Cinzel";
+  font-size: 24px;
+}
+
+.crimson-eye {
+  width: 550px;
+  height: 350px;
+}
