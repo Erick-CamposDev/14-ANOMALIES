@@ -29,6 +29,27 @@ export default function InitialScreen() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleIdGeneration = async () => {
+    const newId = generateId();
+
+    if (!newId) {
+      onOpen("error");
+      return;
+    }
+
+    const data = await fetchAPI(`14anomalies/start/${newId}`, "POST");
+
+    if (!data.ok) {
+      void navigate("/error/500", {
+        state: {
+          message: "O servidor não foi inicializado para a geração de ID.",
+        },
+      });
+      return;
+    }
+
+    void navigate("/anomaly/1");
+  };
   return (
     <div className="initial-container">
       <img
@@ -44,17 +65,7 @@ export default function InitialScreen() {
           variant="double"
           text="desafiar"
           icon="eye-fill"
-          onClick={async () => {
-            const newId = generateId();
-
-            if (!newId) {
-              onOpen("error");
-              return;
-            }
-
-            await fetchAPI(`14anomalies/start/${newId}`, "POST");
-            void navigate("/anomaly/1");
-          }}
+          onClick={handleIdGeneration}
         />
         <Modal
           title="ERRO"
