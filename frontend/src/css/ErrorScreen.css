@@ -12,3 +12,7 @@
   width: 550px;
   height: 350px;
 }
+
+.error-container h2 {
+  width: 70%;
+}
