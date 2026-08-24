@@ -3,6 +3,7 @@ import MainLayout from "./components/layout/MainLayout";
 import InitialScreen from "./pages/InitialScreen";
 import AnomalyRiddle from "./pages/AnomalyRiddle";
 import ErrorScreen from "./pages/ErrorScreen";
+import NotFoundRedirect from "./components/NotFoundRedirect";
 
 export const router = createBrowserRouter([
   {
@@ -17,8 +18,12 @@ export const router = createBrowserRouter([
         element: <AnomalyRiddle />,
       },
       {
-        path: "/error/",
+        path: "/error/:status",
         element: <ErrorScreen />,
+      },
+      {
+        path: "*",
+        element: <NotFoundRedirect />,
       },
     ],
   },
