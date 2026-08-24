@@ -14,7 +14,7 @@ export interface PublicRiddle {
   riddleText: string;
   riddleType: "audio" | "text" | "video" | "image";
   riddleContent: string;
-  riddleSubContent?: string;
+  riddleSubcontent?: string;
   riddleHint: string;
 }
 
@@ -25,17 +25,19 @@ export default function Anomaly() {
   const [loading, setLoading] = useState(true);
   const { modal, onOpen, onClose } = useModal();
   const navigate = useNavigate();
-
   const { number: currentRiddleNumber } = useParams();
+
   const playerId = localStorage.getItem("playerId");
+
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     async function handleFetch() {
       if (!playerId || !currentRiddleNumber) {
-        void navigate("/error", {
+        void navigate("/error/404", {
           state: {
             message:
-              "O jogador não foi encontado. Gere seu id para desafiar as anomalias.",
+              "O jogador não foi encontrado. Gere seu id para desafiar as anomalias.",
           },
         });
 
@@ -46,26 +48,37 @@ export default function Anomaly() {
           `14anomalies/anomaly/${currentRiddleNumber}/${playerId}`,
         );
 
-        if (!data) {
-          void navigate("/error", {
-            state: {
-              message: "O enigma não foi encontrado, digite um número válido.",
-            },
-          });
+        if (!data.ok) {
+          if (data.status === 403) {
+            void navigate("/error/403", {
+              state: {
+                message:
+                  "Você se acha espertinho não é? Saiba que já tinha previsto seus movimentos, trapaceiro. Estou de OLHO em você!",
+              },
+            });
 
-          return;
+            return;
+          }
+
+          if (data.status === 404) {
+            void navigate("/error/404", {
+              state: {
+                message:
+                  "A anomalia não existe. Certifique-se de digitar o número correto para desafiar a anomalia.",
+              },
+            });
+            return;
+          }
+
+          if (data.status === 500) {
+            void navigate("/error/500", {
+              state: {
+                message: "O servidor não foi inicializado!",
+              },
+            });
+            return;
+          }
         }
-
-        if ("message" in data) {
-          void navigate("/error", {
-            state: {
-              message:
-                "Você se acha espertinho não é? Saiba que já previ seus movimentos fúteis, estou de Olho em você, trapaceiro.",
-            },
-          });
-          return;
-        }
-
         setRiddle(data?.riddleData);
       } finally {
         setLoading(false);
@@ -74,6 +87,26 @@ export default function Anomaly() {
 
     void handleFetch();
   }, [currentRiddleNumber, playerId, navigate]);
+
+  const handleAnswerAttempt = async () => {
+    const hasPassed = await fetchAPI(
+      `14anomalies/anomaly/${currentRiddleNumber}/${playerId}`,
+      "POST",
+      {
+        answer: answer.trim(),
+      },
+    );
+
+    if (hasPassed?.riddleData.type === "wrong") {
+      onClose();
+      onOpen("error");
+      return;
+    }
+
+    onClose();
+    setAnswer("");
+    void navigate(`/anomaly/${Number(currentRiddleNumber) + 1}`);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer(e.target.value);
@@ -91,8 +124,19 @@ export default function Anomaly() {
       </div>
       <div className="anomaly-content">
         <FadeLoader loading={loading} width={5} height={20} color={"#fafafa"} />
-
-        <p>{riddle?.riddleContent}</p>
+        {riddle?.riddleType === "text" && (
+          <>
+            <p>{riddle?.riddleContent}</p>
+            {riddle?.riddleSubcontent && <p>{riddle.riddleSubcontent}</p>}
+          </>
+        )}
+        {riddle?.riddleType === "image" && (
+          <img
+            className="anomaly-img"
+            src={`${apiUrl}${riddle?.riddleContent}`}
+            alt="Imagem do enigma"
+          />
+        )}
       </div>
       <div className="anomaly-footer">
         <div className="input-container">
@@ -123,28 +167,7 @@ export default function Anomaly() {
               <img src={seriousEye} alt="Imagem do olho anômalo sério." />
             </div>
             <div className="md-btns">
-              <Button
-                variant="text"
-                text="SIM"
-                onClick={async () => {
-                  const hasPassed = await fetchAPI(
-                    `14anomalies/anomaly/${currentRiddleNumber}/${playerId}`,
-                    "POST",
-                    {
-                      answer: answer.trim(),
-                    },
-                  );
-
-                  if (hasPassed?.riddleData.type === "wrong") {
-                    onClose();
-                    onOpen("error");
-                    return;
-                  }
-
-                  onClose();
-                  void navigate(`/anomaly/${Number(currentRiddleNumber) + 1}`);
-                }}
-              />
+              <Button variant="text" text="SIM" onClick={handleAnswerAttempt} />
             </div>
           </Modal>
           <Modal
