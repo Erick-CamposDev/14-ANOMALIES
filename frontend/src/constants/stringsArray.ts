@@ -1,6 +1,6 @@
 export const eyeImages: string[] = [
-  "src/assets/Anomaly-Eye.png",
-  "src/assets/Anomaly-Eye-Closed.png",
+  "/assets/images/Anomaly-Eye.png",
+  "/assets/images/Anomaly-Eye-Closed.png",
 ];
 
 export const eyeMessages: string[] = [
