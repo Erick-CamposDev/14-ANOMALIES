@@ -30,24 +30,27 @@
       "riddleText": "ANOMALIA 4",
       "riddleType": "image",
       "riddleHint": "Por debaixo dos panos os celulares possuem dificuldades de acessar",
-      "riddleContent": "/assets/inspect.png",
-      "riddleAnswer": "3609439dac298015ff58f91766fc1329a48bf018c488922a46ba7394ab23847d"
+      "riddleContent": "/assets/images/inspect.png",
+      "riddleAnswer": "3609439dac298015ff58f91766fc1329a48bf018c488922a46ba7394ab23847d",
+      "alternativeText": "Imagem escrito INSPECT."
     },
     {
       "id": 5,
       "riddleText": "ANOMALIA 5",
       "riddleType": "audio",
       "riddleHint": "Use Referências Lógicas",
-      "riddleContent": "Placeholder",
-      "riddleAnswer": "96e35ad52b0c820357f3b7410265ae59216291b39a30861eec9ad742bc293114"
+      "riddleContent": "/assets/audio/FIND.wav",
+      "riddleAnswer": "96e35ad52b0c820357f3b7410265ae59216291b39a30861eec9ad742bc293114",
+      "alternativeText": "Audio para ser tocado"
     },
     {
       "id": 6,
       "riddleText": "ANOMALIA 6",
       "riddleType": "image",
       "riddleHint": "As sílabas são confiáveis",
-      "riddleContent": "Placeholder",
-      "riddleAnswer": "ea17f00dab54d3a275320cca613a66aae7e7dccc035dd289344b5eec759b4027"
+      "riddleContent": "/assets/images/flags.jpeg",
+      "riddleAnswer": "ea17f00dab54d3a275320cca613a66aae7e7dccc035dd289344b5eec759b4027",
+      "alternativeText": "Primeira palavra: Russia + Espanha, Polonia + Suecia, Tailandia | Segunda Palavra: Romenia + Uruguai, Bahia + Dallas"
     },
     {
       "id": 7,
@@ -55,15 +58,17 @@
       "riddleType": "video",
       "riddleHint": "A atenção é essencial",
       "riddleContent": "Placeholder",
-      "riddleAnswer": "399312783aa5f499ead40d6b4b2c132852fcacef9b3822b1eee993eade8f01df"
+      "riddleAnswer": "399312783aa5f499ead40d6b4b2c132852fcacef9b3822b1eee993eade8f01df",
+      "alternativeText": "Toque para ver o vídeo."
     },
     {
       "id": 8,
       "riddleText": "ANOMALIA 8",
       "riddleType": "image",
       "riddleHint": "Pense DENTRO da caixa, o Autor está a sua espera.",
-      "riddleContent": "Placeholder",
-      "riddleAnswer": "8f8ddf6f392fb8196e0c797fa215828dd1bdd25063ddb430efce4f0e133b81c9"
+      "riddleContent": "/assets/images/eye-minecraft-mountain.png",
+      "riddleAnswer": "8f8ddf6f392fb8196e0c797fa215828dd1bdd25063ddb430efce4f0e133b81c9",
+      "alternativeText": "Imagem do Olho no minecraft"
     },
     {
       "id": 9,
@@ -71,7 +76,8 @@
       "riddleType": "audio",
       "riddleHint": "É como ver um desenho pelos ouvidos.",
       "riddleContent": "Placeholder",
-      "riddleAnswer": "7667ca21ec7cc0ca7213861836ff487c3f806e892fc22cbddfd2a617a079da16"
+      "riddleAnswer": "7667ca21ec7cc0ca7213861836ff487c3f806e892fc22cbddfd2a617a079da16",
+      "alternativeText": "Audio para ser tocado"
     },
     {
       "id": 10,
@@ -87,7 +93,8 @@
       "riddleType": "image",
       "riddleHint": "Não se engane, isso é muito mais dificil do que parece",
       "riddleContent": "Placeholder",
-      "riddleAnswer": "12a3dde110e765cc712b33615bdd0720857e20fa009e31d1c1a0f08be4930c4c"
+      "riddleAnswer": "12a3dde110e765cc712b33615bdd0720857e20fa009e31d1c1a0f08be4930c4c",
+      "alternativeText": "Imagem de um binário"
     },
     {
       "id": 12,
@@ -95,7 +102,8 @@
       "riddleType": "video",
       "riddleHint": "Cuidado com as piscadas!",
       "riddleContent": "placeholder",
-      "riddleAnswer": "5f8556018592caa5f0516238ad04df42ae730d9fadf7195fbf0688240a09f5d4"
+      "riddleAnswer": "5f8556018592caa5f0516238ad04df42ae730d9fadf7195fbf0688240a09f5d4",
+      "alternativeText": "Toque para ver o vídeo."
     },
     {
       "id": 13,
@@ -111,7 +119,8 @@
       "riddleType": "audio",
       "riddleHint": "Cada resposta abre apenas uma nova porta. Continue transformando o que encontrar até que tudo finalmente faça sentido.",
       "riddleContent": "placeholder",
-      "riddleAnswer": "c072d39099279e741c78be1fe1c68444fb0fef48ea6b985a411d9170d4aad29a"
+      "riddleAnswer": "c072d39099279e741c78be1fe1c68444fb0fef48ea6b985a411d9170d4aad29a",
+      "alternativeText": "Audio para ser tocado"
     }
   ]
 }
