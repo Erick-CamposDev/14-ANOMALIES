@@ -17,16 +17,19 @@ export interface TextRiddle extends RiddleModel {
 export interface VideoRiddle extends RiddleModel {
   riddleType: "video";
   riddleContent: string;
+  alternativeText: string;
 }
 
 export interface ImageRiddle extends RiddleModel {
   riddleType: "image";
   riddleContent: string;
+  alternativeText: string;
 }
 
 export interface AudioRiddle extends RiddleModel {
   riddleType: "audio";
   riddleContent: string;
+  alternativeText: string;
 }
 
 export type Riddle = TextRiddle | VideoRiddle | ImageRiddle | AudioRiddle;
