@@ -4,6 +4,7 @@ import InitialScreen from "./pages/InitialScreen";
 import AnomalyRiddle from "./pages/AnomalyRiddle";
 import ErrorScreen from "./pages/ErrorScreen";
 import NotFoundRedirect from "./components/NotFoundRedirect";
+import SlashSecretPage from "./pages/SlashSecretPage";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: "/error/:status",
         element: <ErrorScreen />,
+      },
+      {
+        path: "secret",
+        element: <SlashSecretPage />,
       },
       {
         path: "*",
