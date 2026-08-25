@@ -1,5 +1,4 @@
 import { useLocation } from "react-router-dom";
-import CrimsonEye from "../assets/Crimson Eye.png";
 import "../css/ErrorScreen.css";
 
 interface ErrorState {
@@ -14,7 +13,7 @@ export default function ErrorScreen() {
     <div className="error-container">
       <img
         className="crimson-eye"
-        src={CrimsonEye}
+        src="/assets/images/Crimson%20Eye.png"
         alt="Imagem do olho anômalo em chamas"
       />
       <h2>{state.message}</h2>
