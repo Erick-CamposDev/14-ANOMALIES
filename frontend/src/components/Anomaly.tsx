@@ -4,7 +4,6 @@ import Button from "./Button";
 import Input from "./Input";
 import Modal from "./Modal";
 import { useModal } from "../hooks/useModal";
-import seriousEye from "../assets/serious-eye.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchAPI } from "../utils/fetchApi";
 import { FadeLoader } from "react-spinners";
@@ -16,6 +15,7 @@ export interface PublicRiddle {
   riddleContent: string;
   riddleSubcontent?: string;
   riddleHint: string;
+  alternativeText: string;
 }
 
 export default function Anomaly() {
@@ -28,8 +28,6 @@ export default function Anomaly() {
   const { number: currentRiddleNumber } = useParams();
 
   const playerId = localStorage.getItem("playerId");
-
-  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     async function handleFetch() {
@@ -133,9 +131,12 @@ export default function Anomaly() {
         {riddle?.riddleType === "image" && (
           <img
             className="anomaly-img"
-            src={`${apiUrl}${riddle?.riddleContent}`}
-            alt="Imagem do enigma"
+            src={riddle.riddleContent}
+            alt={riddle.alternativeText}
           />
+        )}
+        {riddle?.riddleType === "audio" && (
+          <audio className="anomaly-audio" controls src={riddle.riddleContent}></audio>
         )}
       </div>
       <div className="anomaly-footer">
@@ -164,7 +165,10 @@ export default function Anomaly() {
               correta!
             </p>
             <div className="md-image">
-              <img src={seriousEye} alt="Imagem do olho anômalo sério." />
+              <img
+                src="/assets/images/serious-eye.png"
+                alt="Imagem do olho anômalo sério."
+              />
             </div>
             <div className="md-btns">
               <Button variant="text" text="SIM" onClick={handleAnswerAttempt} />
