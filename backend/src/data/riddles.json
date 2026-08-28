@@ -75,7 +75,7 @@
       "riddleText": "ANOMALIA 9",
       "riddleType": "audio",
       "riddleHint": "É como ver um desenho pelos ouvidos.",
-      "riddleContent": "Placeholder",
+      "riddleContent": "/assets/audio/strange_audio.wav",
       "riddleAnswer": "7667ca21ec7cc0ca7213861836ff487c3f806e892fc22cbddfd2a617a079da16",
       "alternativeText": "Audio para ser tocado"
     },
@@ -83,7 +83,7 @@
       "id": 10,
       "riddleText": "ANOMALIA 10",
       "riddleType": "text",
-      "riddleHint": "Os cantos foram ofuscados",
+      "riddleHint": "Os cantos foram ofuscados.",
       "riddleContent": "Placeholder",
       "riddleAnswer": "98e1ce9d6d05b2698069aa9c3519b3e2dc4c1c1d67e2f83b6c9acdbba3bbacd3"
     },
@@ -91,8 +91,8 @@
       "id": 11,
       "riddleText": "ANOMALIA 11",
       "riddleType": "image",
-      "riddleHint": "Não se engane, isso é muito mais dificil do que parece",
-      "riddleContent": "Placeholder",
+      "riddleHint": "Seja claro com sua resposta.",
+      "riddleContent": "/assets/images/anomaly-binary.png",
       "riddleAnswer": "12a3dde110e765cc712b33615bdd0720857e20fa009e31d1c1a0f08be4930c4c",
       "alternativeText": "Imagem de um binário"
     },
