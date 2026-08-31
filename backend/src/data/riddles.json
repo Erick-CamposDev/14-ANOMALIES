@@ -116,11 +116,11 @@
     {
       "id": 14,
       "riddleText": "A̸̢̛̗̯̋̈́̕͜N̶̡̛̼̙̳̈́̕Ǫ̷̛̗̼̙̎̈̕M̸̢̧̛̳̼̙̎̈̕Ą̸̛̗̼̙̎̈̕L̶̢̛̼̙̳̈́̕I̷̡̛̗̼̎̈̕Ą̸̢̛̼̙ 14",
-      "riddleType": "audio",
-      "riddleHint": "Cada resposta abre apenas uma nova porta. Continue transformando o que encontrar até que tudo finalmente faça sentido.",
-      "riddleContent": "placeholder",
+      "riddleType": "image",
+      "riddleHint": "Ache a base e depois siga as instruções.",
+      "riddleContent": "/assets/images/common-image.png",
       "riddleAnswer": "c072d39099279e741c78be1fe1c68444fb0fef48ea6b985a411d9170d4aad29a",
-      "alternativeText": "Audio para ser tocado"
+      "alternativeText": "Imagem com criptografias"
     }
   ]
 }
