@@ -5,6 +5,7 @@ import AnomalyRiddle from "./pages/AnomalyRiddle";
 import ErrorScreen from "./pages/ErrorScreen";
 import NotFoundRedirect from "./components/NotFoundRedirect";
 import SlashSecretPage from "./pages/SlashSecretPage";
+import Reward from "./pages/Reward";
 
 export const router = createBrowserRouter([
   {
@@ -23,8 +24,12 @@ export const router = createBrowserRouter([
         element: <ErrorScreen />,
       },
       {
-        path: "secret",
+        path: "/secret",
         element: <SlashSecretPage />,
+      },
+      {
+        path: "/reward",
+        element: <Reward />,
       },
       {
         path: "*",
