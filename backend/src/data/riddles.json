@@ -56,8 +56,8 @@
       "id": 7,
       "riddleText": "ANOMALIA 7",
       "riddleType": "video",
-      "riddleHint": "A atenção é essencial",
-      "riddleContent": "Placeholder",
+      "riddleHint": "O Alfabeto está esquisito...",
+      "riddleContent": "/assets/videos/DISCUSSION.mp4",
       "riddleAnswer": "399312783aa5f499ead40d6b4b2c132852fcacef9b3822b1eee993eade8f01df",
       "alternativeText": "Toque para ver o vídeo."
     },
@@ -101,17 +101,18 @@
       "riddleText": "ANOMALIA 12",
       "riddleType": "video",
       "riddleHint": "Cuidado com as piscadas!",
-      "riddleContent": "placeholder",
+      "riddleContent": "/assets/videos/BLINKING.mp4",
       "riddleAnswer": "5f8556018592caa5f0516238ad04df42ae730d9fadf7195fbf0688240a09f5d4",
       "alternativeText": "Toque para ver o vídeo."
     },
     {
       "id": 13,
       "riddleText": "ANOMALIA 13",
-      "riddleType": "text",
-      "riddleHint": "São separados mas se unem no final, não se esqueça do meu número favorito! 👁‍🗨",
-      "riddleContent": "placeholder",
-      "riddleAnswer": "a3b66924a77dab48f48ea9b1ea70295b4f01fdf7b7585b20d340db1710830563"
+      "riddleType": "video",
+      "riddleHint": "São separados mas se unem no final.",
+      "riddleContent": "/assets/videos/STRANGE.mp4",
+      "riddleAnswer": "a3b66924a77dab48f48ea9b1ea70295b4f01fdf7b7585b20d340db1710830563",
+      "alternativeText": "Toque para ver o vídeo."
     },
     {
       "id": 14,
