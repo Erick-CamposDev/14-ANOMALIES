@@ -103,6 +103,10 @@ export default function Anomaly() {
 
     onClose();
     setAnswer("");
+
+    if (currentRiddleNumber === "15") {
+      void navigate("/reward");
+    }
     void navigate(`/anomaly/${Number(currentRiddleNumber) + 1}`);
   };
 
@@ -136,7 +140,18 @@ export default function Anomaly() {
           />
         )}
         {riddle?.riddleType === "audio" && (
-          <audio className="anomaly-audio" controls src={riddle.riddleContent}></audio>
+          <audio
+            className="anomaly-audio"
+            controls
+            src={riddle.riddleContent}
+          ></audio>
+        )}
+        {riddle?.riddleType === "video" && (
+          <video
+            className="anomaly-video"
+            controls
+            src={riddle.riddleContent}
+          ></video>
         )}
       </div>
       <div className="anomaly-footer">
