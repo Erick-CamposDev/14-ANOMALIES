@@ -37,9 +37,12 @@ export default function InitialScreen() {
       return;
     }
 
+    onOpen("loading");
+
     const data = await fetchAPI(`14anomalies/start/${newId}`, "POST");
 
     if (!data.ok) {
+      onClose();
       void navigate("/error/500", {
         state: {
           message: "O servidor não foi inicializado para a geração de ID.",
@@ -48,6 +51,7 @@ export default function InitialScreen() {
       return;
     }
 
+    onClose();
     void navigate("/anomaly/1");
   };
   return (
@@ -68,12 +72,12 @@ export default function InitialScreen() {
           onClick={handleIdGeneration}
         />
         <Modal
-          title="ERRO"
-          modalActive={modal === "error"}
+          title="Carregando..."
+          modalActive={modal === "loading"}
           onClose={() => onClose()}
         >
-          <h2>O Id gerado já existe!</h2>
-          <p>Tente resetar seu progresso</p>
+          <h2>Espere um momento.</h2>
+          <p>O olho está carregando as anomalias.</p>
         </Modal>
         <Button
           variant="double"
