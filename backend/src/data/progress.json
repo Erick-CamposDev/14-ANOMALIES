@@ -1,18 +1,10 @@
 {
   "playersProgress": [
     {
-      "playerId": "cf42c584-95aa-47c2-a2ff-3795440a86f8",
+      "playerId": "105b54d2-656a-4477-a0e2-f3099ac90103",
       "progress": {
-        "createdAt": "2026-08-24T18:50:05.769Z",
-        "updatedAt": "2026-08-28T20:32:39.238Z",
-        "resolvedRiddles": []
-      }
-    },
-    {
-      "playerId": "6aa2ff03-ac08-4aa9-95d3-3a4417b9b593",
-      "progress": {
-        "createdAt": "2026-09-02T19:06:33.316Z",
-        "updatedAt": "2026-09-02T19:16:33.808Z",
+        "createdAt": "2026-09-03T19:39:26.292Z",
+        "updatedAt": "2026-09-03T20:08:57.820Z",
         "resolvedRiddles": [
           "anomaly-0",
           "anomaly-1",
@@ -28,6 +20,7 @@
           "anomaly-11",
           "anomaly-12",
           "anomaly-13",
+          "anomaly-14",
           "anomaly-14"
         ]
       }
