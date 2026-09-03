@@ -9,6 +9,7 @@ export default function Header() {
   const riddle = pathname.startsWith("/anomaly");
   const error = pathname.startsWith("/error");
   const secret = pathname.startsWith("/secret");
+  const reward = pathname.startsWith("/reward");
 
   return (
     <header>
@@ -22,6 +23,7 @@ export default function Header() {
       {riddle && <h1 className="anomaly-title">ANOMALIA {number}</h1>}
       {error && <h1 className="anomaly-title">ERRO DETECTADO</h1>}
       {secret && <h1 className="anomaly-title">PÁGINA SECRETA</h1>}
+      {reward && <h1 className="anomaly-title">RECOMPENSA</h1>}
     </header>
   );
 }
