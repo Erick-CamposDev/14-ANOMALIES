@@ -1,0 +1,24 @@
+.reward-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.reward-eye img {
+  width: 400px;
+  height: 300px;
+}
+
+.reward-texts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.reward-texts span {
+  font-size: 34px;
+  font-family: "Cinzel";
+  font-weight: 700;
+}
