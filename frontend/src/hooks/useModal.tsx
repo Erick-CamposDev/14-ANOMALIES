@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export type ModalType = "error" | "about" | "hint" | "try" | null;
+export type ModalType = "error" | "about" | "hint" | "try" | "loading" | null;
 
 export function useModal() {
   const [modal, setModal] = useState<ModalType>(null);
