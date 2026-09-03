@@ -104,8 +104,9 @@ export default function Anomaly() {
     onClose();
     setAnswer("");
 
-    if (currentRiddleNumber === "15") {
+    if (currentRiddleNumber === "14") {
       void navigate("/reward");
+      return;
     }
     void navigate(`/anomaly/${Number(currentRiddleNumber) + 1}`);
   };
