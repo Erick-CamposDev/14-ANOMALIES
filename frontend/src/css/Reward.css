@@ -15,10 +15,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-}
-
-.reward-texts span {
-  font-size: 34px;
   font-family: "Cinzel";
+  font-size: 34px;
   font-weight: 700;
 }
