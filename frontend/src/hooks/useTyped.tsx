@@ -9,6 +9,10 @@ export default function useTyped(
   const textRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    if (!textRef.current) {
+      return;
+    }
+
     const newTyped = new Typed(textRef.current, {
       strings: strings,
       typeSpeed: 35,
