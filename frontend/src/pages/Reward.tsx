@@ -4,6 +4,9 @@ import useTyped from "../hooks/useTyped";
 import { fetchAPI } from "../utils/fetchApi";
 import { useNavigate } from "react-router-dom";
 import "../css/Reward.css";
+import Button from "../components/Button";
+import Modal from "../components/Modal";
+import { useModal } from "../hooks/useModal";
 
 interface RewardData {
   title: string;
@@ -16,6 +19,7 @@ export default function Reward() {
   const navigate = useNavigate();
   const [finished, setFinished] = useState(false);
   const [reward, setReward] = useState<RewardData | null>(null);
+  const { modal, onOpen, onClose } = useModal();
 
   const handleFinalProgress = async () => {
     if (!playerId) {
@@ -75,6 +79,25 @@ export default function Reward() {
     }, 2000),
   );
 
+  const handleReset = async () => {
+    onClose();
+    onOpen("loading");
+
+    const data = await fetchAPI(`14anomalies/reset/${playerId}`, "POST");
+
+    if (!data.ok) {
+      void navigate("/error/500", {
+        state: {
+          message: "O servidor não foi inicializado!",
+        },
+      });
+    }
+
+    onClose();
+    void navigate("/");
+    onOpen("success");
+  };
+
   return (
     <div className="reward-container">
       <div className="reward-eye">
@@ -87,6 +110,45 @@ export default function Reward() {
             <p>Seu prêmio está aqui: {reward?.rewardURL}</p>
           </>
         )}
+      </div>
+      <div className="reset-btn-container">
+        {finished && (
+          <Button
+            variant="text"
+            text="Resetar"
+            onClick={() => onOpen("reset")}
+          />
+        )}
+        <Modal
+          title="Reset de Progresso"
+          modalActive={modal === "reset"}
+          onClose={() => onClose()}
+        >
+          <h2>Tem certeza?</h2>
+          <p>
+            Você quer resetar seu prgresso? Você irá perder ele mas você poderá
+            rejogar tudo outra vez.
+          </p>
+          <div className="reset-btn-container">
+            <Button variant="text" text="Resetar tudo" onClick={handleReset} />
+          </div>
+        </Modal>
+        <Modal
+          title="Resetando..."
+          modalActive={modal === "loading"}
+          onClose={() => onClose}
+        >
+          <h2>Carregando reset</h2>
+          <p>Seu progresso está sendo resetado aguarde...</p>
+        </Modal>
+        <Modal
+          title="Sucesso!"
+          modalActive={modal === "success"}
+          onClose={() => onClose}
+        >
+          <h2>Reset Concluído</h2>
+          <p>Seu progresso foi resetado com sucesso!</p>
+        </Modal>
       </div>
     </div>
   );
