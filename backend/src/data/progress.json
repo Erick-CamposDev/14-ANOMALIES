@@ -4,24 +4,8 @@
       "playerId": "105b54d2-656a-4477-a0e2-f3099ac90103",
       "progress": {
         "createdAt": "2026-09-03T19:39:26.292Z",
-        "updatedAt": "2026-09-04T19:39:40.367Z",
-        "resolvedRiddles": [
-          "anomaly-0",
-          "anomaly-1",
-          "anomaly-2",
-          "anomaly-3",
-          "anomaly-4",
-          "anomaly-5",
-          "anomaly-6",
-          "anomaly-7",
-          "anomaly-8",
-          "anomaly-9",
-          "anomaly-10",
-          "anomaly-11",
-          "anomaly-12",
-          "anomaly-13",
-          "anomaly-14"
-        ]
+        "updatedAt": "2026-09-05T18:28:58.406Z",
+        "resolvedRiddles": ["anomaly-0"]
       }
     }
   ]
