@@ -23,7 +23,7 @@
   flex-direction: column;
   border: 4px solid #fafafa;
   border-radius: 12px;
-  height: 65%;
+  height: auto;
   width: 30%;
   min-width: 280px;
   background: #6b010196;
@@ -73,4 +73,57 @@
   padding: 0.5rem;
   font-size: 18px;
   font-family: "Cinzel";
+}
+
+@media (min-width: 280px) and (max-width: 421px) {
+  .close-btn {
+    height: 80%;
+    width: 20%;
+  }
+
+  .md-title {
+    font-size: 13px;
+  }
+
+  .modal-container {
+    width: 85%;
+  }
+
+  .main-content {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 421px) and (max-width: 768px) {
+  .modal-container {
+    width: 70%;
+  }
+
+  .md-title {
+    font-size: 14px;
+  }
+
+  .main-content {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .modal-container {
+    width: 50%;
+  }
+
+  .main-content {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .modal-container {
+    width: 35%;
+  }
+
+  .main-content {
+    font-size: 16px;
+  }
 }

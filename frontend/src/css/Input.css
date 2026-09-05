@@ -13,3 +13,9 @@
   border: 4px solid #0588d4;
   outline: none;
 }
+
+@media (min-width: 280px) and (max-width: 420px) {
+  .anomaly-input {
+    width: 90%;
+  }
+}

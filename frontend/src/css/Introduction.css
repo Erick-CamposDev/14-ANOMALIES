@@ -29,6 +29,7 @@
   font-family: "Special Elite";
   font-weight: 400;
   text-shadow: #0a0a0a 4px 4px 15px;
+  text-align: center;
 }
 
 .intro-bg.closed {
@@ -50,5 +51,11 @@
   100% {
     background-size: 100% 100%;
     background-position: 50% 50%;
+  }
+}
+
+@media (min-width: 280px) and (max-width: 500px) {
+  .intro-msg {
+    font-size: 24px;
   }
 }

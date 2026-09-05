@@ -17,3 +17,36 @@ header {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+@media (min-width: 280px) and (max-width: 420px) {
+  .logo {
+    width: 280px;
+    height: 200px;
+  }
+
+  .anomaly-title {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 420px) and (max-width: 670px) {
+  .logo {
+    width: 400px;
+    height: 275px;
+  }
+
+  .anomaly-title {
+    font-size: 35px;
+  }
+}
+
+@media (min-width: 670px) and (max-width: 768px) {
+  .logo {
+    width: 500px;
+    height: 325px;
+  }
+
+  .anomaly-title {
+    font-size: 45px;
+  }
+}

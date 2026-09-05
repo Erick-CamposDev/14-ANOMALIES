@@ -7,3 +7,9 @@
   margin: 3.25rem 0 0 0;
   font-size: 18px;
 }
+
+@media (min-width: 280px) and (max-width: 421px) {
+  .footer-container {
+    font-size: 15px;
+  }
+}

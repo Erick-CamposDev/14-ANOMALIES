@@ -19,3 +19,31 @@
   font-size: 34px;
   font-weight: 700;
 }
+
+.reset-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 280px) and (max-width: 421px) {
+  .reward-texts {
+    font-size: 18px;
+  }
+
+  .reward-eye img {
+    width: 250px;
+    height: 180px;
+  }
+}
+
+@media (min-width: 421px) and (max-width: 768px) {
+  .reward-texts {
+    font-size: 22px;
+  }
+
+  .reward-eye img {
+    width: 325px;
+    height: 225px;
+  }
+}

@@ -1,5 +1,10 @@
+html,
 body {
-  height: 100vh;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100dvh;
   position: relative;
   background-image: url("/assets/images/14-Anomalies-BG.png");
   background-position: center;

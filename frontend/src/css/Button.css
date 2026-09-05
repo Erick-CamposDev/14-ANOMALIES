@@ -66,3 +66,25 @@
   transform: scale(1.05);
   filter: brightness(1.1);
 }
+
+@media (min-width: 280px) and (max-width: 421px) {
+  .btn--double {
+    width: 180px;
+    height: 75px;
+    font-size: 16px;
+  }
+
+  .btn--text {
+    width: 140px;
+    height: 70px;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 421px) and (max-width: 660px) {
+  .btn--double {
+    width: 220px;
+    height: 80px;
+    font-size: 19px;
+  }
+}

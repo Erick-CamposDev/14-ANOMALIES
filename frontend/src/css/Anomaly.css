@@ -96,3 +96,103 @@
   width: 280px;
   height: 200px;
 }
+
+@media (min-width: 280px) and (max-width: 421px) {
+  .anomaly-container {
+    width: 95%;
+    height: 750px;
+    padding: 0.75rem;
+  }
+
+  .anomaly-video {
+    height: 320px;
+  }
+
+  .md-image img {
+    width: 200px;
+    height: 140px;
+  }
+
+  .anomaly-img {
+    width: 250px;
+    height: 220px;
+  }
+
+  .anomaly-audio {
+    width: 270px;
+  }
+
+  .hint-container {
+    margin: 0;
+  }
+
+  .input-container {
+    flex-direction: column;
+  }
+
+  .anomaly-content {
+    font-size: 20px;
+  }
+
+  .anomaly-footer {
+    flex-direction: column;
+    height: 40%;
+  }
+
+  .hint-container {
+    bottom: 0;
+    right: 0;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 421px) and (max-width: 768px) {
+  .input-container {
+    flex-direction: column;
+  }
+
+  .md-image img {
+    width: 230px;
+    height: 180px;
+  }
+
+  .anomaly-img {
+    width: 320px;
+    height: 300px;
+  }
+
+  .anomaly-audio {
+    width: 320px;
+  }
+
+  .anomaly-container {
+    font-size: 24px;
+  }
+
+  .anomaly-container {
+    width: 90%;
+    height: 750px;
+  }
+
+  .anomaly-footer {
+    height: 30%;
+  }
+
+  .hint-container {
+    bottom: 0;
+    right: 0;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .anomaly-container {
+    width: 85%;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .anomaly-container {
+    width: 70%;
+  }
+}
