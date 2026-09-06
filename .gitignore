@@ -1,6 +1,7 @@
 backend/node_modules
 frontend/node_modules
 backend/.env
+backend/src/generated/prisma
 frontend/.env.development
 frontend/.env.production
 
