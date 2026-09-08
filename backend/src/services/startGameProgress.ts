@@ -4,9 +4,8 @@ import { createProgress } from "../repositories/progress-repositories";
 
 export default async function startProgressGameService(
   id: string,
-  createdAt: string,
 ): Promise<responseModel<CommonMessage>> {
-  await createProgress(id, createdAt);
+  await createProgress(id);
 
   return {
     statusCode: StatusCode.OK,

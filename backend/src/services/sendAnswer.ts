@@ -19,19 +19,28 @@ export default async function sendAnswerService(
   const foundPlayer = await getPlayerProgressRepo(playerId);
 
   if (!currentRiddle) return receiveNotFoundResponse("riddle");
-
   if (!foundPlayer) return receiveNotFoundResponse("player");
 
-  if (hashAnswer !== currentRiddle.riddleAnswer) {
+  if (
+    foundPlayer.progress?.currentState === null ||
+    foundPlayer.progress?.currentState === undefined
+  )
+    return receiveNotFoundResponse("progress");
+
+  const requiredLevel = currentRiddle.requiredLevel;
+  const currentState = foundPlayer.progress?.currentState;
+
+  if (currentState > requiredLevel) {
     return {
       statusCode: StatusCode.OK,
-      body: { message: "Wrong Answer! Try Again", type: "wrong" },
+      body: {
+        message: "The riddle was already completed",
+        type: "already-completed",
+      },
     };
   }
 
-  const resolvedRiddles = foundPlayer.progress.resolvedRiddles;
-
-  if (!resolvedRiddles.includes(`anomaly-${Number(id) - 1}`)) {
+  if (currentState < requiredLevel) {
     return {
       statusCode: StatusCode.FORBIDDEN,
       body: {
@@ -40,9 +49,14 @@ export default async function sendAnswerService(
     };
   }
 
-  const updatedAt = new Date().toISOString();
+  if (hashAnswer !== currentRiddle.riddleAnswer) {
+    return {
+      statusCode: StatusCode.OK,
+      body: { message: "Wrong Answer! Try Again", type: "wrong" },
+    };
+  }
 
-  await updatePlayerProgressRepo(playerId, updatedAt, `anomaly-${id}`);
+  await updatePlayerProgressRepo(playerId, `anomaly-${id}`);
 
   return {
     statusCode: StatusCode.OK,

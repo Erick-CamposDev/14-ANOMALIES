@@ -4,9 +4,8 @@ import { updatePlayerProgressRepo } from "../repositories/progress-repositories"
 
 export default async function updatePlayerProgressService(
   id: string,
-  updatedAt: string,
 ): Promise<responseModel<CommonMessage>> {
-  const foundPlayer = await updatePlayerProgressRepo(id, updatedAt);
+  const foundPlayer = await updatePlayerProgressRepo(id);
 
   if (!foundPlayer) {
     return {

@@ -1,11 +1,9 @@
-import { expectedRiddles } from "../constants/expectedRiddles";
 import { StatusCode } from "../enums/status-codes";
 import { CommonMessage, responseModel } from "../models/responseModel";
 import {
   getPlayerProgressRepo,
   resetProgressRepo,
 } from "../repositories/progress-repositories";
-import { compareProgress } from "../utils/compareProgress";
 import { receiveNotFoundResponse } from "../utils/receiveNotFoundResponse";
 
 export default async function resetProgressService(
@@ -15,11 +13,15 @@ export default async function resetProgressService(
 
   if (!foundPlayer) return receiveNotFoundResponse("player");
 
-  const resolvedRiddles = foundPlayer.progress.resolvedRiddles;
+  if (
+    foundPlayer.progress?.currentState === null ||
+    foundPlayer.progress?.hasFinished === null
+  )
+    return receiveNotFoundResponse("progress");
 
-  const isCompleted = compareProgress(resolvedRiddles, expectedRiddles);
+  const hasFinished = foundPlayer.progress?.hasFinished;
 
-  if (!isCompleted) {
+  if (!hasFinished) {
     return {
       statusCode: StatusCode.NO_CONTENT,
       body: { message: "" },

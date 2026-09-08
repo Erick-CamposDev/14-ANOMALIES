@@ -15,12 +15,15 @@ export default async function getPublicRiddleService(
   if (!foundRiddle) return receiveNotFoundResponse("riddle");
   if (!foundPlayer) return receiveNotFoundResponse("player");
 
-  const resolvedRiddles = foundPlayer.progress.resolvedRiddles;
-
   if (
-    foundRiddle.id !== 1 &&
-    !resolvedRiddles.includes(`anomaly-${Number(id) - 1}`)
-  ) {
+    foundPlayer.progress?.currentState === null ||
+    foundPlayer.progress?.currentState === undefined
+  )
+    return receiveNotFoundResponse("progress");
+
+  const currentState = foundPlayer.progress?.currentState;
+
+  if (foundRiddle.id !== 1 && currentState < foundRiddle.requiredLevel) {
     return {
       statusCode: StatusCode.FORBIDDEN,
       body: {

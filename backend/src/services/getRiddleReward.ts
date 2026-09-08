@@ -1,10 +1,8 @@
-import { expectedRiddles } from "../constants/expectedRiddles";
 import { StatusCode } from "../enums/status-codes";
 import { CommonMessage, responseModel } from "../models/responseModel";
 import { RewardPageModel } from "../models/rewardPageModel";
 import { getPlayerProgressRepo } from "../repositories/progress-repositories";
 import { getRewardURL } from "../repositories/riddle-repositories";
-import { compareProgress } from "../utils/compareProgress";
 import { receiveNotFoundResponse } from "../utils/receiveNotFoundResponse";
 
 export default async function getRiddleRewardService(
@@ -14,11 +12,10 @@ export default async function getRiddleRewardService(
 
   if (!foundPlayer) return receiveNotFoundResponse("player");
 
-  const resolvedRiddles = foundPlayer.progress.resolvedRiddles;
+  if (!foundPlayer.progress?.currentState)
+    return receiveNotFoundResponse("progress");
 
-  const isCompleted = await compareProgress(resolvedRiddles, expectedRiddles);
-
-  if (!isCompleted) {
+  if (!foundPlayer.progress.hasFinished) {
     return {
       statusCode: StatusCode.FORBIDDEN,
       body: {
