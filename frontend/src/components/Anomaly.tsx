@@ -101,6 +101,12 @@ export default function Anomaly() {
       return;
     }
 
+    if (hasPassed?.riddleData.type === "already-completed") {
+      onClose();
+      onOpen("resolved");
+      return;
+    }
+
     onClose();
     setAnswer("");
 
@@ -197,6 +203,14 @@ export default function Anomaly() {
           >
             <h2>Oops! Parece que sua resposta não está correta!</h2>
             <p>Que tal tentarmos de novo?</p>
+          </Modal>
+          <Modal
+            title="RESOLVIDO"
+            modalActive={modal === "resolved"}
+            onClose={() => onClose()}
+          >
+            <h2>Enigma Resolvido</h2>
+            <p>Você já resolveu esse enigma, faça os posteriores.</p>
           </Modal>
         </div>
         <div className="hint-container">
