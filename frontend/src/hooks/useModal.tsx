@@ -8,6 +8,7 @@ export type ModalType =
   | "loading"
   | "reset"
   | "success"
+  | "resolved"
   | null;
 
 export function useModal() {
