@@ -1,10 +1,8 @@
-export interface Progress {
-  resolvedRiddles: string[];
-  createdAt: string;
-  updatedAt: string | null;
-}
+import { Progress } from "../generated/prisma/client";
 
-export interface BaseProgress {
-  playerId: string;
-  progress: Progress;
+export interface PlayerWithProgressModel {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  progress: Progress | null;
 }

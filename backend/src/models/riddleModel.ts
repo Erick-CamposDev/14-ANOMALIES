@@ -2,6 +2,7 @@ type riddleContent = "text" | "audio" | "video" | "image";
 
 export interface RiddleModel {
   id: number;
+  requiredLevel: number;
   riddleText: string;
   riddleType: riddleContent;
   riddleHint: string;

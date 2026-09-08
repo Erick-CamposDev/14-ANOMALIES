@@ -2,7 +2,7 @@ import { StatusCode } from "../enums/status-codes";
 
 export type CommonMessage = {
   message: string;
-  type?: "success" | "wrong";
+  type?: "success" | "wrong" | "already-completed";
 };
 
 export interface responseModel<T> {
