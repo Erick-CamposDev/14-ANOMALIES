@@ -1,96 +1,94 @@
-import fs from "fs";
-import path from "path";
-import { BaseProgress } from "../models/progressModel";
+import { prisma } from "../lib/prisma";
+import { PlayerWithProgressModel } from "../models/progressModel";
 
-const PROGRESS_PATH = path.join(__dirname, "../data/progress.json");
-
-type ProgressData = {
-  playersProgress: BaseProgress[];
-};
-
-export const getAllProgress = async (): Promise<BaseProgress[]> => {
-  const content = await fs.promises.readFile(PROGRESS_PATH, "utf-8");
-  const data = JSON.parse(content) as ProgressData;
-  return data.playersProgress;
-};
-
-export const createProgress = async (id: string, createdAt: string) => {
-  const progress = await getAllProgress();
-  const newProgressInfo: BaseProgress = {
-    playerId: id,
-    progress: {
-      createdAt: createdAt,
-      updatedAt: null,
-      resolvedRiddles: ["anomaly-0"],
+export const createProgress = async (
+  id: string,
+): Promise<PlayerWithProgressModel> => {
+  const newProgress = await prisma.player.create({
+    data: {
+      id: id,
+      progress: {
+        create: {
+          currentState: 0,
+        },
+      },
     },
-  };
+    include: {
+      progress: true,
+    },
+  });
 
-  progress.push(newProgressInfo);
-
-  const fileContent: ProgressData = { playersProgress: progress };
-
-  await fs.promises.writeFile(
-    PROGRESS_PATH,
-    JSON.stringify(fileContent, null, 2),
-    "utf-8",
-  );
+  return newProgress;
 };
 
-export const getPlayerProgressRepo = async (id: string) => {
-  const progresses = await getAllProgress();
-  const foundPlayer = progresses.find((p: BaseProgress) => id === p.playerId);
+export const getPlayerProgressRepo = async (
+  id: string,
+): Promise<PlayerWithProgressModel | false> => {
+  const playerProgress = await prisma.player.findUnique({
+    where: { id: id },
+    include: { progress: true },
+  });
 
-  if (!foundPlayer) {
-    return false;
-  }
-
-  return foundPlayer;
+  return playerProgress ? playerProgress : false;
 };
 
 export const updatePlayerProgressRepo = async (
   id: string,
-  updatedAt: string,
   passedRiddle?: string,
-) => {
-  const progresses = await getAllProgress();
-  const foundPlayer = progresses.find((p: BaseProgress) => id === p.playerId);
+): Promise<PlayerWithProgressModel | false> => {
+  const playerProgress = await getPlayerProgressRepo(id);
 
-  if (!foundPlayer) return false;
-
-  if (passedRiddle) {
-    const playerProgress = foundPlayer.progress.resolvedRiddles;
-    playerProgress.push(passedRiddle);
+  if (!playerProgress || !playerProgress.progress) {
+    return false;
   }
 
-  foundPlayer.progress.updatedAt = updatedAt;
+  if (passedRiddle && playerProgress.progress.currentState < 14) {
+    const nextState = playerProgress.progress.currentState + 1;
+    const updatedProgress = prisma.player.update({
+      where: { id: id },
+      data: {
+        updatedAt: new Date(),
+        progress: {
+          update: {
+            currentState: nextState,
+            hasFinished: nextState === 14,
+          },
+        },
+      },
+      include: { progress: true },
+    });
 
-  const fileContent: ProgressData = { playersProgress: progresses };
+    return updatedProgress;
+  }
 
-  await fs.promises.writeFile(
-    PROGRESS_PATH,
-    JSON.stringify(fileContent, null, 2),
-    "utf-8",
-  );
-
-  return true;
+  return prisma.player.update({
+    where: { id: id },
+    data: {
+      updatedAt: new Date(),
+    },
+    include: { progress: true },
+  });
 };
 
-export const resetProgressRepo = async (playerId: string) => {
-  const progresses = await getAllProgress();
+export const resetProgressRepo = async (
+  playerId: string,
+): Promise<PlayerWithProgressModel | false> => {
+  const progress = await getPlayerProgressRepo(playerId);
 
-  const foundPlayer = progresses.find(
-    (p: BaseProgress) => playerId === p.playerId,
-  );
+  if (!progress) {
+    return false;
+  }
 
-  if (!foundPlayer) return false;
-
-  foundPlayer.progress.resolvedRiddles = [];
-
-  const fileContent: ProgressData = { playersProgress: progresses };
-
-  await fs.promises.writeFile(
-    PROGRESS_PATH,
-    JSON.stringify(fileContent, null, 2),
-    "utf-8",
-  );
+  return prisma.player.update({
+    where: { id: playerId },
+    data: {
+      progress: {
+        update: {
+          hasFinished: false,
+          currentState: 0,
+        },
+      },
+    },
+    include: { progress: true },
+  });
 };
