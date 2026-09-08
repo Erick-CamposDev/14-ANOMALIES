@@ -9,6 +9,18 @@ import { useNavigate } from "react-router-dom";
 import generateId from "../utils/generateId";
 import { useModal } from "../hooks/useModal";
 
+interface PlayerData {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  progress: {
+    id: string;
+    currentState: number;
+    hasFinished: boolean;
+    playerId: string;
+  };
+}
+
 export default function InitialScreen() {
   const strings = useMemo(() => eyeMessages, []);
 
@@ -33,7 +45,41 @@ export default function InitialScreen() {
     const newId = generateId();
 
     if (!newId) {
-      onOpen("error");
+      const idLocalStorage = localStorage.getItem("playerId");
+      const data = await fetchAPI(`14anomalies/progress/${idLocalStorage}`);
+
+      onOpen("loading");
+
+      if (!data.ok) {
+        onClose();
+        if (data.status === 404) {
+          void navigate("/error/404", {
+            state: {
+              message: "O jogador não foi encontrado!",
+            },
+          });
+          return;
+        }
+        if (data.status === 500) {
+          void navigate("/error/500", {
+            state: {
+              message: "O servidor não foi inicializado!",
+            },
+          });
+          return;
+        }
+      }
+
+      const playerData: PlayerData = data.riddleData;
+
+      console.log(playerData.progress.currentState);
+
+      if (playerData.progress.currentState === 14) {
+        void navigate("/reward");
+        return;
+      }
+
+      void navigate(`/anomaly/${Number(playerData.progress.currentState) + 1}`);
       return;
     }
 
