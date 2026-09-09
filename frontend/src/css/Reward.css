@@ -20,6 +20,27 @@
   font-weight: 700;
 }
 
+.reward-link {
+  position: relative;
+  text-decoration: none;
+  color: #fafafa;
+}
+
+.reward-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  background: #fafafa;
+  height: 3px;
+  left: 0;
+  bottom: -4px;
+  transition: width 0.3s ease;
+}
+
+.reward-link:hover::after {
+  width: 100%;
+}
+
 .reset-btn-container {
   display: flex;
   align-items: center;

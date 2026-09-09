@@ -25,6 +25,35 @@ h1 {
   gap: 1.25rem;
 }
 
+.links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.links-container a {
+  color: #fafafa;
+  font-weight: 700;
+  text-decoration: none;
+  position: relative;
+  width: 25%;
+}
+
+.links-container a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  background: #fafafa;
+  height: 3px;
+  left: 0;
+  bottom: 0;
+  transition: width 0.3s ease;
+}
+
+.links-container a:hover::after {
+  width: 100%;
+}
+
 @media (min-width: 280px) and (max-width: 420px) {
   .eye {
     width: 250px;
