@@ -20,7 +20,6 @@ export interface PublicRiddle {
 
 export default function Anomaly() {
   const [answer, setAnswer] = useState("");
-  const [isDisabled, setIsDisabled] = useState(true);
   const [riddle, setRiddle] = useState<PublicRiddle | null>(null);
   const [loading, setLoading] = useState(true);
   const { modal, onOpen, onClose } = useModal();
@@ -117,9 +116,14 @@ export default function Anomaly() {
     void navigate(`/anomaly/${Number(currentRiddleNumber) + 1}`);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onOpen("try");
+    }
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer(e.target.value);
-    setIsDisabled(e.target.value.trim() === "");
   };
 
   return (
@@ -166,10 +170,11 @@ export default function Anomaly() {
           <Input
             placeholderText="Digite sua resposta."
             value={answer}
+            onKeyDown={handleKeyDown}
             onChange={(e) => handleChange(e)}
           />
           <Button
-            disabled={isDisabled}
+            disabled={!answer.trim()}
             variant="text"
             text="ENVIAR"
             onClick={() => onOpen("try")}
