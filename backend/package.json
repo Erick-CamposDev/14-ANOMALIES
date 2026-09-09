@@ -9,7 +9,7 @@
     "start": "build && node dist/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Erick Campos",
   "license": "MIT",
   "description": "14 Anomalies API and riddle data.",
   "dependencies": {
