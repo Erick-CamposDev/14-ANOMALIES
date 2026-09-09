@@ -107,7 +107,16 @@ export default function Reward() {
         {!finished && <span ref={typedRef}></span>}
         {finished && (
           <>
-            <p>Seu prêmio está aqui: {reward?.rewardURL}</p>
+            <p>
+              Seu prêmio está aqui:{" "}
+              <a
+                className="reward-link"
+                href={reward?.rewardURL}
+                target="_blank"
+              >
+                Vídeo Secreto
+              </a>
+            </p>
           </>
         )}
       </div>

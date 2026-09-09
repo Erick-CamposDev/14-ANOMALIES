@@ -153,8 +153,17 @@ export default function InitialScreen() {
             enigmas que elas não vão conseguir de te ajudar então já tomem nota
             disso! Enfim, boa sorte, desafiante!
           </p>
-          <p>LINK VIDEO 1</p>
-          <p>LINK VIDEO 2</p>
+          <div className="links-container">
+            <a
+              href="https://youtu.be/FeG5BFLc0Cs?si=7k0FII4i9yIa9ceT"
+              target="_blank"
+            >
+              PARTE 1
+            </a>
+            <a href="" target="_blank">
+              PARTE 2
+            </a>
+          </div>
         </Modal>
       </div>
     </div>
