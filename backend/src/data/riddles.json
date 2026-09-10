@@ -53,7 +53,7 @@
       "requiredLevel": 5,
       "riddleText": "ANOMALIA 6",
       "riddleType": "image",
-      "riddleHint": "As sílabas são confiáveis",
+      "riddleHint": "As sílabas e iniciais são confiáveis",
       "riddleContent": "/assets/images/flags.jpeg",
       "riddleAnswer": "ea17f00dab54d3a275320cca613a66aae7e7dccc035dd289344b5eec759b4027",
       "alternativeText": "Primeira palavra: Russia + Espanha, Polonia + Suecia, Tailandia | Segunda Palavra: Romenia + Uruguai, Bahia + Dallas"
@@ -132,7 +132,7 @@
       "requiredLevel": 13,
       "riddleText": "A̸̢̛̗̯̋̈́̕͜N̶̡̛̼̙̳̈́̕Ǫ̷̛̗̼̙̎̈̕M̸̢̧̛̳̼̙̎̈̕Ą̸̛̗̼̙̎̈̕L̶̢̛̼̙̳̈́̕I̷̡̛̗̼̎̈̕Ą̸̢̛̼̙ 14",
       "riddleType": "image",
-      "riddleHint": "Ache a base e depois siga as instruções.",
+      "riddleHint": "A base de um pack possui sua metade.",
       "riddleContent": "/assets/images/common-image.png",
       "riddleAnswer": "c072d39099279e741c78be1fe1c68444fb0fef48ea6b985a411d9170d4aad29a",
       "alternativeText": "Imagem com criptografias"

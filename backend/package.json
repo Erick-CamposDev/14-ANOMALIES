@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "tsx --env-file=.env src/server.ts",
     "watch": "tsx --watch --env-file=.env src/server.ts",
-    "build": "tsup src",
-    "start": "build && node dist/server.js"
+    "build": "tsup src && copyfiles -f src/data/riddles.json dist/data",
+    "start": "npm run build && node dist/server.js"
   },
   "keywords": [],
   "author": "Erick Campos",
@@ -26,6 +26,7 @@
     "@types/express": "^5.0.6",
     "@types/node": "^26.1.1",
     "@types/pg": "^8.23.1",
+    "copyfiles": "^2.4.1",
     "prisma": "^7.10.0",
     "tsup": "^8.5.1",
     "tsx": "^4.23.1",
