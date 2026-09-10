@@ -89,6 +89,7 @@ export default function InitialScreen() {
 
     if (!data.ok) {
       onClose();
+      localStorage.removeItem("playerId");
       void navigate("/error/500", {
         state: {
           message: "O servidor não foi inicializado para a geração de ID.",
