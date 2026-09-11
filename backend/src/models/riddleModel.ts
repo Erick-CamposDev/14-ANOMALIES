@@ -1,4 +1,4 @@
-type riddleContent = "text" | "audio" | "video" | "image";
+type riddleContent = "text" | "audio" | "urlVideo" | "image";
 
 export interface RiddleModel {
   id: number;
@@ -16,9 +16,8 @@ export interface TextRiddle extends RiddleModel {
 }
 
 export interface VideoRiddle extends RiddleModel {
-  riddleType: "video";
+  riddleType: "urlVideo";
   riddleContent: string;
-  alternativeText: string;
 }
 
 export interface ImageRiddle extends RiddleModel {
