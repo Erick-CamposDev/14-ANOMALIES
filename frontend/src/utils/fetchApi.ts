@@ -8,7 +8,7 @@ export async function fetchAPI(
   const apiURL = import.meta.env.VITE_API_URL;
 
   try {
-    const response = await fetch(`${apiURL}/${route}`, {
+    const response = await fetch(`${apiURL}${route}`, {
       method: method,
       headers: {
         "Content-Type": "application/json",
