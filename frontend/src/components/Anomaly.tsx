@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../css/Anomaly.css";
 import Button from "./Button";
 import Input from "./Input";
@@ -11,11 +11,11 @@ import { FadeLoader } from "react-spinners";
 export interface PublicRiddle {
   id: number;
   riddleText: string;
-  riddleType: "audio" | "text" | "video" | "image";
+  riddleType: "audio" | "text" | "urlVideo" | "image";
   riddleContent: string;
   riddleSubcontent?: string;
   riddleHint: string;
-  alternativeText: string;
+  alternativeText?: string;
 }
 
 export default function Anomaly() {
@@ -23,6 +23,7 @@ export default function Anomaly() {
   const [riddle, setRiddle] = useState<PublicRiddle | null>(null);
   const [loading, setLoading] = useState(true);
   const { modal, onOpen, onClose } = useModal();
+  const isSubmittingRef = useRef(false);
   const navigate = useNavigate();
   const { number: currentRiddleNumber } = useParams();
 
@@ -86,34 +87,58 @@ export default function Anomaly() {
   }, [currentRiddleNumber, playerId, navigate]);
 
   const handleAnswerAttempt = async () => {
-    const hasPassed = await fetchAPI(
-      `14anomalies/anomaly/${currentRiddleNumber}/${playerId}`,
-      "POST",
-      {
-        answer: answer.trim(),
-      },
-    );
-
-    if (hasPassed?.riddleData.type === "wrong") {
-      onClose();
-      onOpen("error");
+    if (isSubmittingRef.current) {
       return;
     }
 
-    if (hasPassed?.riddleData.type === "already-completed") {
-      onClose();
-      onOpen("resolved");
-      return;
-    }
-
+    isSubmittingRef.current = true;
     onClose();
-    setAnswer("");
+    onOpen("loading");
 
-    if (currentRiddleNumber === "14") {
-      void navigate("/reward");
-      return;
+    try {
+      const hasPassed = await fetchAPI(
+        `14anomalies/anomaly/${currentRiddleNumber}/${playerId}`,
+        "POST",
+        {
+          answer: answer.trim(),
+        },
+      );
+
+      if (!hasPassed?.ok) {
+        if (hasPassed.status === 500) {
+          void navigate("/error/500", {
+            state: {
+              message:
+                "O servidor não foi inicializado para responder o enigma",
+            },
+          });
+          return;
+        }
+      }
+
+      if (hasPassed?.riddleData.type === "wrong") {
+        onClose();
+        onOpen("error");
+        return;
+      }
+
+      if (hasPassed?.riddleData.type === "already-completed") {
+        onClose();
+        onOpen("resolved");
+        return;
+      }
+
+      onClose();
+      setAnswer("");
+
+      if (currentRiddleNumber === "14") {
+        void navigate("/reward");
+        return;
+      }
+      void navigate(`/anomaly/${Number(currentRiddleNumber) + 1}`);
+    } finally {
+      isSubmittingRef.current = false;
     }
-    void navigate(`/anomaly/${Number(currentRiddleNumber) + 1}`);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -157,12 +182,14 @@ export default function Anomaly() {
             src={riddle.riddleContent}
           ></audio>
         )}
-        {riddle?.riddleType === "video" && (
-          <video
-            className="anomaly-video"
-            controls
-            src={riddle.riddleContent}
-          ></video>
+        {riddle?.riddleType === "urlVideo" && (
+          <a
+            href={riddle?.riddleContent}
+            target="_blank"
+            className="anomaly-url"
+          >
+            ASSISTA
+          </a>
         )}
       </div>
       <div className="anomaly-footer">
@@ -200,6 +227,14 @@ export default function Anomaly() {
             <div className="md-btns">
               <Button variant="text" text="SIM" onClick={handleAnswerAttempt} />
             </div>
+          </Modal>
+          <Modal
+            title="CARREGANDO"
+            modalActive={modal === "loading"}
+            onClose={() => onClose()}
+          >
+            <h2>Checando pergunta...</h2>
+            <p>Estou checando sua pergunta.</p>
           </Modal>
           <Modal
             title="ERRO"
