@@ -40,10 +40,10 @@ Antes de começar, também é recomendado assistir aos dois vídeos que apresent
 
 | Recurso            | Link                                                                    |
 | ------------------ | ----------------------------------------------------------------------- |
-| Jogar online       | `ADICIONE_O_LINK_DO_FRONTEND`                                           |
-| API                | `ADICIONE_O_LINK_DA_API`                                                |
+| Jogar online       | [Jogue o 14 ANOMALIES](https://14-anomalies.vercel.app/)                                          
+| API                | [API](https://one4-anomalies-1.onrender.com/14anomalies/progress/8f3c1a72-6d94-4e58-b7a1-29c4f0e85d63) |                                              |
 | História - Parte 1 | [Assistir no YouTube](https://youtu.be/FeG5BFLc0Cs?si=7k0FII4i9yIa9ceT) |
-| História - Parte 2 | `ADICIONE_O_LINK_DO_SEGUNDO_VIDEO`                                      |
+| História - Parte 2 | `placeholder`                                      |
 
 ---
 
@@ -79,7 +79,7 @@ A experiência combina:
 - Enigmas textuais;
 - Imagens;
 - Áudios;
-- Vídeos;
+- Vídeos do Youtube;
 - Códigos e mensagens criptografadas;
 - Elementos visuais de terror e mistério;
 - Uma narrativa relacionada ao universo de Minecraft;
@@ -118,7 +118,6 @@ Alguns dos recursos utilizados na experiência estão disponíveis em:
 
 - `frontend/public/assets/images`;
 - `frontend/public/assets/audio`;
-- `frontend/public/assets/videos`.
 
 Imagens utilizadas incluem:
 
@@ -590,7 +589,7 @@ Gera a build e inicia o servidor.
 URL do jogo:
 
 ```text
-ADICIONE_AQUI_O_LINK_DO_FRONTEND
+https://14-anomalies.vercel.app/
 ```
 
 ### Backend
@@ -598,7 +597,7 @@ ADICIONE_AQUI_O_LINK_DO_FRONTEND
 URL da API:
 
 ```text
-ADICIONE_AQUI_O_LINK_DA_API
+https://one4-anomalies-1.onrender.com/14anomalies/progress/8f3c1a72-6d94-4e58-b7a1-29c4f0e85d63
 ```
 
 Depois de realizar o deploy, configure a variável do frontend:
@@ -610,7 +609,7 @@ VITE_API_URL=https://URL_REAL_DA_API
 O arquivo `.env.production` possui atualmente um endereço de exemplo:
 
 ```env
-VITE_API_URL=https://minha-api.com
+VITE_API_URL=https://localhost:5000
 ```
 
 Esse valor deve ser substituído pela URL real da API publicada.
@@ -622,7 +621,7 @@ Esse valor deve ser substituído pela URL real da API publicada.
 O projeto suporta os seguintes tipos de conteúdo:
 
 ```ts
-type RiddleContent = "text" | "audio" | "video" | "image";
+type RiddleContent = "text" | "audio" | "urlVideo" | "image";
 ```
 
 Cada enigma pode conter:
