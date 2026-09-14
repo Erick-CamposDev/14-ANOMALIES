@@ -31,8 +31,8 @@ Recomenda-se jogar o jogo antes de consultar os arquivos do projeto, principalme
 
 Antes de começar, também é recomendado assistir aos dois vídeos que apresentam a história de Obcaozwo 14. Eles ajudam a entender o contexto, a origem da persona e os acontecimentos relacionados aos enigmas.
 
-- [História de Obcaozwo 14 - Parte 1](https://youtu.be/FeG5BFLc0Cs?si=7k0FII4i9yIa9ceT)
-- História de Obcaozwo 14 - Parte 2: `ADICIONE_O_LINK_DO_SEGUNDO_VIDEO`
+- [COMO CRIEI UM ARG EM UM REALMS DE MINECRAFT: História de Obcaozwo 14](https://youtu.be/FeG5BFLc0Cs?si=7k0FII4i9yIa9ceT)
+- [TUDO QUE FICOU PARA TRÁS NO REALMS: Curiosidades e extras sobre Obcaozwo 14](https://youtu.be/yaifMnxu7dc?si=haDXZIo32_hWeWYl)
 
 ---
 
