@@ -43,7 +43,7 @@ Antes de começar, também é recomendado assistir aos dois vídeos que apresent
 | Jogar online       | [Jogue o 14 ANOMALIES](https://14-anomalies.vercel.app/)                                          
 | API                | [API](https://one4-anomalies-1.onrender.com/14anomalies/progress/8f3c1a72-6d94-4e58-b7a1-29c4f0e85d63) |                                              |
 | História - Parte 1 | [Assistir no YouTube](https://youtu.be/FeG5BFLc0Cs?si=7k0FII4i9yIa9ceT) |
-| História - Parte 2 | [Ãssistir no Youtube](https://youtu.be/yaifMnxu7dc?si=haDXZIo32_hWeWYl)                                    |
+| História - Parte 2 | [Assistir no Youtube](https://youtu.be/yaifMnxu7dc?si=haDXZIo32_hWeWYl)                                    |
 
 ---
 
