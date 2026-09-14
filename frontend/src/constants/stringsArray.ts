@@ -13,18 +13,18 @@ export const eyeMessages: string[] = [
 ];
 
 export const introMessages: string[] = [
-  "Aguardando conexão com o ambiente",
+  "Aguardando conexão com o ambiente.",
   "Conexão estabelecida...",
-  "Aguardando autorização de Obcaozwo 14",
+  "Aguardando autorização de Obcaozwo 14.",
   "Autorização concedida...",
-  "Lendo dados do vídeo",
-  "ERRO CRÍTICO",
-  "A leitura foi comprometida",
-  "14 ANOMALIAS foram detectadas",
-  "Será necessário que elas sejam passadas.",
-  "É com você desafiante.",
+  "Lendo dados do vídeo...",
+  "ERRO CRÍTICO!",
+  "A leitura foi comprometida.",
+  "14 ANOMALIAS foram detectadas.",
+  "Será necessário que elas sejam decifradas.",
+  "Elas estão esperando, desafiante.",
   "Boa sorte.",
-  "Obcaozwo 14",
+  "- Obcaozwo 14",
 ];
 
 export const rewardMessages: string[] = [
