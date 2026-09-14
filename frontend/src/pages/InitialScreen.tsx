@@ -161,7 +161,10 @@ export default function InitialScreen() {
             >
               PARTE 1
             </a>
-            <a href="" target="_blank">
+            <a
+              href="https://youtu.be/yaifMnxu7dc?si=pBWJ1tba1vRDBhjW"
+              target="_blank"
+            >
               PARTE 2
             </a>
           </div>
