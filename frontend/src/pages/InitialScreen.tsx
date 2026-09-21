@@ -18,7 +18,7 @@ interface PlayerData {
     currentState: number;
     hasFinished: boolean;
     playerId: string;
-  };
+  } | null;
 }
 
 export default function InitialScreen() {
@@ -53,6 +53,7 @@ export default function InitialScreen() {
       if (!data.ok) {
         onClose();
         if (data.status === 404) {
+          localStorage.removeItem("playerId");
           void navigate("/error/404", {
             state: {
               message: "O jogador não foi encontrado!",
@@ -72,7 +73,27 @@ export default function InitialScreen() {
 
       const playerData: PlayerData = data.riddleData;
 
-      console.log(playerData.progress.currentState);
+      if (!playerData?.progress) {
+        const newProgress = await fetchAPI(
+          `14anomalies/start/${idLocalStorage}`,
+          "POST",
+        );
+
+        onClose();
+
+        if (!newProgress.ok) {
+          void navigate("/error/500", {
+            state: {
+              message:
+                "Não foi possivel criar o progresso do jogador existente!",
+            },
+          });
+          return;
+        }
+
+        void navigate("/anomaly/1");
+        return;
+      }
 
       if (playerData.progress.currentState === 14) {
         void navigate("/reward");

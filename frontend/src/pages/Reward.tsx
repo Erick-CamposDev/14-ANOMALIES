@@ -51,7 +51,7 @@ export default function Reward() {
         void navigate("/error/404", {
           state: {
             message:
-              "O prêmio não foi encontrado, certifique-se de digitar a URL corretamente.",
+              "O progresso do jogador não foi definido ou não foi encontrado, gere um id para iniciar o progresso.",
           },
         });
 
