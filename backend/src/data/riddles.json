@@ -43,7 +43,7 @@
       "requiredLevel": 4,
       "riddleText": "ANOMALIA 5",
       "riddleType": "audio",
-      "riddleHint": "Use Referências Lógicas",
+      "riddleHint": "O endereço pode te dizer mais oque parece",
       "riddleContent": "/assets/audio/FIND.wav",
       "riddleAnswer": "96e35ad52b0c820357f3b7410265ae59216291b39a30861eec9ad742bc293114",
       "alternativeText": "Audio para ser tocado"
