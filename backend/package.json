@@ -1,6 +1,6 @@
 {
   "name": "14-anomalies-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "server.ts",
   "scripts": {
     "dev": "tsx --env-file=.env src/server.ts",
