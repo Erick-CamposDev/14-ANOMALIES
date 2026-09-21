@@ -12,8 +12,12 @@ export default async function getRiddleRewardService(
 
   if (!foundPlayer) return receiveNotFoundResponse("player");
 
-  if (!foundPlayer.progress?.currentState)
+  if (
+    foundPlayer.progress?.currentState === null ||
+    foundPlayer.progress?.currentState === undefined
+  ) {
     return receiveNotFoundResponse("progress");
+  }
 
   if (!foundPlayer.progress.hasFinished) {
     return {

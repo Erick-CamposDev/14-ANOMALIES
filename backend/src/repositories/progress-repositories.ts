@@ -4,21 +4,42 @@ import { PlayerWithProgressModel } from "../models/progressModel";
 export const createProgress = async (
   id: string,
 ): Promise<PlayerWithProgressModel> => {
-  const newProgress = await prisma.player.create({
-    data: {
-      id: id,
-      progress: {
-        create: {
-          currentState: 0,
+  const playerProgress = await getPlayerProgressRepo(id);
+
+  if (!playerProgress) {
+    return prisma.player.create({
+      data: {
+        id: id,
+        progress: {
+          create: {
+            currentState: 0,
+          },
         },
       },
-    },
-    include: {
-      progress: true,
-    },
-  });
+      include: {
+        progress: true,
+      },
+    });
+  }
 
-  return newProgress;
+  if (!playerProgress.progress) {
+    return prisma.player.update({
+      where: { id: id },
+      data: {
+        updatedAt: new Date(),
+        progress: {
+          create: {
+            currentState: 0,
+          },
+        },
+      },
+      include: {
+        progress: true,
+      },
+    });
+  }
+
+  return playerProgress;
 };
 
 export const getPlayerProgressRepo = async (
